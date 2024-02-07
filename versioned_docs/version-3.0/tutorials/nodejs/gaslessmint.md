@@ -22,18 +22,18 @@ We've added new imports to our existing setup for gasless NFT minting:
 ```typescript
 // Import necessary modules and configurations
 import { config } from "dotenv"; // dotenv for loading environment variables from a .env file
-import { IBundler, Bundler } from "@biconomy/bundler"; // Biconomy bundler for managing gasless transactions
+import { IBundler, Bundler } from "@biconomy-devx/bundler"; // Biconomy bundler for managing gasless transactions
 import {
   DEFAULT_ENTRYPOINT_ADDRESS,
   BiconomySmartAccountV2,
-} from "@biconomy/account"; // Default entry point and smart account module from Biconomy
+} from "@biconomy-devx/account"; // Default entry point and smart account module from Biconomy
 import { Wallet, ethers, providers } from "ethers"; // ethers for interacting with the Ethereum blockchain
 import { ChainId } from "@biconomy/core-types"; // Chain IDs for different blockchains supported by Biconomy
 import {
   IPaymaster,
   BiconomyPaymaster,
   PaymasterMode,
-} from "@biconomy/paymaster"; // Paymaster interface and Biconomy implementation
+} from "@biconomy-devx/paymaster"; // Paymaster interface and Biconomy implementation
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
@@ -129,7 +129,7 @@ try {
   // Log the transaction details URL and the URL to view minted NFTs
   console.log(`View Minted NFTs: https://testnets.opensea.io/${address}`);
   console.log(
-    `Transaction Details: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`,
+    `Transaction Details: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`
   );
 } catch (e) {
   // Log any errors encountered during the transaction
@@ -186,7 +186,7 @@ async function mintNFT() {
     const transactionDetails = await userOpResponse.wait();
     // Log the transaction details URL and the URL to view minted NFTs
     console.log(
-      `Transaction Details: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`,
+      `Transaction Details: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`
     );
     console.log(`View Minted NFTs: https://testnets.opensea.io/${address}`);
   } catch (e) {
@@ -206,18 +206,18 @@ And that's it! You've successfully executed a gasless NFT minting transaction. ð
 ```typescript
 // Import necessary modules and configurations
 import { config } from "dotenv"; // dotenv for loading environment variables from a .env file
-import { IBundler, Bundler } from "@biconomy/bundler"; // Biconomy bundler for managing gasless transactions
+import { IBundler, Bundler } from "@biconomy-devx/bundler"; // Biconomy bundler for managing gasless transactions
 import {
   DEFAULT_ENTRYPOINT_ADDRESS,
   BiconomySmartAccountV2,
-} from "@biconomy/account"; // Default entry point and smart account module from Biconomy
+} from "@biconomy-devx/account"; // Default entry point and smart account module from Biconomy
 import { Wallet, ethers, providers } from "ethers"; // ethers for interacting with the Ethereum blockchain
 import { ChainId } from "@biconomy/core-types"; // Chain IDs for different blockchains supported by Biconomy
 import {
   IPaymaster,
   BiconomyPaymaster,
   PaymasterMode,
-} from "@biconomy/paymaster"; // Paymaster interface and Biconomy implementation
+} from "@biconomy-devx/paymaster"; // Paymaster interface and Biconomy implementation
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
@@ -227,7 +227,7 @@ config(); // Load environment variables from .env file
 
 // Set up the Ethereum provider and wallet
 const provider = new providers.JsonRpcProvider(
-  "https://rpc.ankr.com/polygon_mumbai", // JSON-RPC provider URL for the Polygon Mumbai test network
+  "https://rpc.ankr.com/polygon_mumbai" // JSON-RPC provider URL for the Polygon Mumbai test network
 );
 
 const wallet = new Wallet(process.env.PRIVATE_KEY || "", provider); // Creating a wallet instance with a private key from environment variables
@@ -271,7 +271,7 @@ async function createSmartAccount() {
 
   console.log(
     "Smart Account Address: ",
-    await smartAccount.getAccountAddress(), // Logging the address of the created smart account
+    await smartAccount.getAccountAddress() // Logging the address of the created smart account
   );
 
   return smartAccount;
@@ -316,7 +316,7 @@ async function mintNFT() {
     const transactionDetails = await userOpResponse.wait();
     // Log the transaction details URL and the URL to view minted NFTs
     console.log(
-      `Transaction Details: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`,
+      `Transaction Details: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`
     );
     console.log(`View Minted NFTs: https://testnets.opensea.io/${address}`);
   } catch (e) {

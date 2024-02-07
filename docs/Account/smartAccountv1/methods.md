@@ -2,6 +2,7 @@
 sidebar_position: 3
 title: Methods
 ---
+
 # Smart Account V1 Methods
 
 ```typescript
@@ -12,20 +13,20 @@ export interface IBiconomySmartAccount extends ISmartAccount {
   getExecuteBatchCallData(
     to: Array<string>,
     value: Array<BigNumberish>,
-    data: Array<BytesLike>,
+    data: Array<BytesLike>
   ): string;
   buildUserOp(
     transactions: Transaction[],
-    overrides?: Overrides,
+    overrides?: Overrides
   ): Promise<Partial<UserOperation>>;
   getAllTokenBalances(balancesDto: BalancesDto): Promise<BalancesResponse>;
   getTotalBalanceInUsd(balancesDto: BalancesDto): Promise<UsdBalanceResponse>;
   getSmartAccountsByOwner(
-    smartAccountByOwnerDto: SmartAccountByOwnerDto,
+    smartAccountByOwnerDto: SmartAccountByOwnerDto
   ): Promise<SmartAccountsResponse>;
   getTransactionsByAddress(
     chainId: number,
-    address: string,
+    address: string
   ): Promise<SCWTransactionResponse[]>;
   getTransactionByHash(txHash: string): Promise<SCWTransactionResponse>;
   getAllSupportedChains(): Promise<SupportedChainsResponse>;
@@ -56,7 +57,7 @@ The `ISmartAccount` interface provides essential methods for interacting with a 
 
 ```typescript
 import { UserOperation } from "@biconomy/core-types";
-import { UserOpResponse } from "@biconomy/bundler";
+import { UserOpResponse } from "@biconomy-devx/bundler";
 export interface ISmartAccount {
   getSmartAccountAddress(accountIndex: number): Promise<string>;
   signUserOp(userOperation: UserOperation): Promise<UserOperation>;

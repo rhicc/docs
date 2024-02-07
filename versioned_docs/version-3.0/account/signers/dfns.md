@@ -25,14 +25,14 @@ The first thing we need to do is generate a DFNS wallet. Let's take a look at th
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
-import { Bundler } from "@biconomy/bundler";
+} from "@biconomy-devx/account";
+import { Bundler } from "@biconomy-devx/bundler";
 import { ChainId } from "@biconomy/core-types";
 import {
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
   ECDSAOwnershipValidationModule,
 } from "@biconomy/modules";
-import { BiconomyPaymaster, PaymasterMode } from "@biconomy/paymaster";
+import { BiconomyPaymaster, PaymasterMode } from "@biconomy-devx/paymaster";
 import { DfnsWallet } from "@dfns/lib-ethersjs5";
 import { DfnsApiClient } from "@dfns/sdk";
 import { AsymmetricKeySigner } from "@dfns/sdk-keysigner";

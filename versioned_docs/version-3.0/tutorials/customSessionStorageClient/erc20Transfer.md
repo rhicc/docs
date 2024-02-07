@@ -41,7 +41,7 @@ const tokenContract = new ethers.Contract(
   // polygon mumbai usdc address
   "0xdA5289fCAAF71d52a80A254da614a192b693e977",
   usdcAbi,
-  provider,
+  provider
 );
 let decimals = 18;
 
@@ -57,7 +57,7 @@ Now we will get raw transaction data for a transfer of 1 usdc to the receiver ad
 ```typescript
 const { data } = await tokenContract.populateTransaction.transfer(
   "0x322Af0da66D00be980C7aa006377FCaaEee3BDFD", // receiver address
-  ethers.utils.parseUnits("1".toString(), decimals),
+  ethers.utils.parseUnits("1".toString(), decimals)
 );
 
 const tx1 = {
@@ -104,14 +104,14 @@ import {
   DEFAULT_SESSION_KEY_MANAGER_MODULE,
 } from "@biconomy/modules";
 import { config } from "dotenv";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
-import { IPaymaster, BiconomyPaymaster } from "@biconomy/paymaster";
+import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
 
 import { SessionFileStorage } from "./customSession";
 config();
@@ -133,7 +133,7 @@ const paymaster: IPaymaster = new BiconomyPaymaster({
 });
 
 const provider = new providers.JsonRpcProvider(
-  "https://rpc.ankr.com/polygon_mumbai",
+  "https://rpc.ankr.com/polygon_mumbai"
 );
 const wallet = new Wallet(process.env.PRIVATE_KEY || "", provider);
 
@@ -159,7 +159,7 @@ async function createAccount() {
 
 const erc20Transfer = async (
   sessionFileStorage: SessionFileStorage,
-  amount: string,
+  amount: string
 ) => {
   if (!address || !smartAccount) {
     console.log("Please connect wallet first");
@@ -190,7 +190,7 @@ const erc20Transfer = async (
       // polygon mumbai usdc address
       "0xdA5289fCAAF71d52a80A254da614a192b693e977",
       usdcAbi,
-      provider,
+      provider
     );
     let decimals = 18;
 
@@ -201,7 +201,7 @@ const erc20Transfer = async (
     }
     const { data } = await tokenContract.populateTransaction.transfer(
       "0x322Af0da66D00be980C7aa006377FCaaEee3BDFD", // receiver address
-      ethers.utils.parseUnits(amount, decimals),
+      ethers.utils.parseUnits(amount, decimals)
     );
 
     // generate tx data to erc20 transfer
@@ -242,7 +242,7 @@ const erc20Transfer = async (
 async function executeTransaction() {
   await createAccount();
   const sessionFileStorage: SessionFileStorage = new SessionFileStorage(
-    address,
+    address
   );
   await erc20Transfer(sessionFileStorage, "0.019");
   await erc20Transfer(sessionFileStorage, "0.018");

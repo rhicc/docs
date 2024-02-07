@@ -52,12 +52,12 @@ Let's add our imports for this file:
 
 ```js
 import React, { useState, useEffect } from "react";
-import { BiconomySmartAccount } from "@biconomy/account";
+import { BiconomySmartAccount } from "@biconomy-devx/account";
 import {
   IHybridPaymaster,
   SponsorUserOperationDto,
   PaymasterMode,
-} from "@biconomy/paymaster";
+} from "@biconomy-devx/paymaster";
 import abi from "../utils/counterAbi.json";
 import { ethers } from "ethers";
 import { ToastContainer, toast } from "react-toastify";

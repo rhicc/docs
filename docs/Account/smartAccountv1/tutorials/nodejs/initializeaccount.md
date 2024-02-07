@@ -16,8 +16,8 @@ This tutorial has a setup step in the previous section: [Environment Setup](envi
 Let’s import our bundler package, and providers from the ethers package:
 
 ```typescript
-import { IBundler, Bundler } from "@biconomy/bundler";
-import { DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy/account";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
+import { DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy-devx/account";
 import { providers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
 ```
@@ -45,7 +45,7 @@ import {
   BiconomySmartAccount,
   BiconomySmartAccountConfig,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
 ```
 
@@ -53,7 +53,7 @@ Update your import from the account package to also include BiconomySmartAccount
 
 ```typescript
 const provider = new providers.JsonRpcProvider(
-  "https://rpc.ankr.com/polygon_mumbai",
+  "https://rpc.ankr.com/polygon_mumbai"
 );
 const wallet = new Wallet(process.env.PRIVATE_KEY || "", provider);
 ```
@@ -70,7 +70,7 @@ import {
   IHybridPaymaster,
   PaymasterMode,
   SponsorUserOperationDto,
-} from "@biconomy/paymaster";
+} from "@biconomy-devx/paymaster";
 ```
 
 We'll need these to help us execute our gasless transaction. The first thing we want to do is create an instance of our paymaster:
@@ -102,7 +102,7 @@ Now we can use this configuration to get the users Smart Account or create one i
 ```typescript
 async function createAccount() {
   let biconomySmartAccount = new BiconomySmartAccount(
-    biconomySmartAccountConfig,
+    biconomySmartAccountConfig
   );
   biconomySmartAccount = await biconomySmartAccount.init();
   console.log("owner: ", biconomySmartAccount.owner);

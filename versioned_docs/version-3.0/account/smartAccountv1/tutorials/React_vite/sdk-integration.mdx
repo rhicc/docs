@@ -16,13 +16,13 @@ import { useState, useEffect, useRef } from "react";
 import SocialLogin from "@biconomy/web3-auth";
 import { ChainId } from "@biconomy/core-types";
 import { ethers } from "ethers";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
   BiconomySmartAccount,
   BiconomySmartAccountConfig,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
-import { IPaymaster, BiconomyPaymaster } from "@biconomy/paymaster";
+} from "@biconomy-devx/account";
+import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
 import Counter from "./Components/Counter";
 ```
 
@@ -42,7 +42,7 @@ Here is information about the rest of the imports:
   and handle sending them to an entry point contract to be executed as a
   transaction onchain.
 - `BiconomySmartAccount`,`BiconomySmartAccountConfig`,
-  `DEFAULT_ENTRYPOINT_ADDRESS` from `@biconomy/account` to handle the
+  `DEFAULT_ENTRYPOINT_ADDRESS` from `@biconomy-devx/account` to handle the
   configuration and methods of smart accounts
 - `IPaymaster` and `Paymaster` will be used to sponsor gas fees for an
   account, provided specific predefined conditions are satisfied.
@@ -51,15 +51,15 @@ Now, let's setup our paymaster and bundler :
 
 ```js
 const bundler: IBundler = new Bundler({
-    bundlerUrl:
-        "https://bundler.biconomy.io/api/v2/80001/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44",
-    chainId: ChainId.POLYGON_MUMBAI,
-    entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
+  bundlerUrl:
+    "https://bundler.biconomy.io/api/v2/80001/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44",
+  chainId: ChainId.POLYGON_MUMBAI,
+  entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
 });
 
 const paymaster: IPaymaster = new BiconomyPaymaster({
-    paymasterUrl:
-        "https://paymaster.biconomy.io/api/v1/80001/[YOUR_API_KEY_HERE]",
+  paymasterUrl:
+    "https://paymaster.biconomy.io/api/v1/80001/[YOUR_API_KEY_HERE]",
 });
 ```
 
@@ -87,15 +87,15 @@ Next let's add a `useEffect` hook:
 
 ```js
 useEffect(() => {
-    let configureLogin: any;
-    if (interval) {
-        configureLogin = setInterval(() => {
-            if (!!sdkRef.current?.provider) {
-                setupSmartAccount();
-                clearInterval(configureLogin);
-            }
-        }, 1000);
-    }
+  let configureLogin: any;
+  if (interval) {
+    configureLogin = setInterval(() => {
+      if (!!sdkRef.current?.provider) {
+        setupSmartAccount();
+        clearInterval(configureLogin);
+      }
+    }, 1000);
+  }
 }, [interval]);
 ```
 
@@ -110,7 +110,7 @@ async function login() {
   if (!sdkRef.current) {
     const socialLoginSDK = new SocialLogin();
     const signature1 = await socialLoginSDK.whitelistUrl(
-      "http://127.0.0.1:5173/",
+      "http://127.0.0.1:5173/"
     );
     await socialLoginSDK.init({
       chainId: ethers.utils.hexValue(ChainId.POLYGON_MUMBAI).toString(),
@@ -169,42 +169,42 @@ Now lets actually set up the smart account:
 
 ```js
 async function setupSmartAccount() {
-    if (!sdkRef?.current?.provider) return;
-    sdkRef.current.hideWallet();
-    setLoading(true);
-    const web3Provider = new ethers.providers.Web3Provider(
-        sdkRef.current.provider
+  if (!sdkRef?.current?.provider) return;
+  sdkRef.current.hideWallet();
+  setLoading(true);
+  const web3Provider = new ethers.providers.Web3Provider(
+    sdkRef.current.provider
+  );
+  setProvider(web3Provider);
+
+  try {
+    const biconomySmartAccountConfig: BiconomySmartAccountConfig = {
+      signer: web3Provider.getSigner(),
+      chainId: ChainId.POLYGON_MUMBAI,
+      bundler: bundler,
+      paymaster: paymaster,
+    };
+    let biconomySmartAccount = new BiconomySmartAccount(
+      biconomySmartAccountConfig
     );
-    setProvider(web3Provider);
+    biconomySmartAccount = await biconomySmartAccount.init();
+    console.log("owner: ", biconomySmartAccount.owner);
+    console.log(
+      "address: ",
+      await biconomySmartAccount.getSmartAccountAddress()
+    );
+    console.log(
+      "deployed: ",
+      await biconomySmartAccount.isAccountDeployed(
+        await biconomySmartAccount.getSmartAccountAddress()
+      )
+    );
 
-    try {
-        const biconomySmartAccountConfig: BiconomySmartAccountConfig = {
-            signer: web3Provider.getSigner(),
-            chainId: ChainId.POLYGON_MUMBAI,
-            bundler: bundler,
-            paymaster: paymaster,
-        };
-        let biconomySmartAccount = new BiconomySmartAccount(
-            biconomySmartAccountConfig
-        );
-        biconomySmartAccount = await biconomySmartAccount.init();
-        console.log("owner: ", biconomySmartAccount.owner);
-        console.log(
-            "address: ",
-            await biconomySmartAccount.getSmartAccountAddress()
-        );
-        console.log(
-            "deployed: ",
-            await biconomySmartAccount.isAccountDeployed(
-                await biconomySmartAccount.getSmartAccountAddress()
-            )
-        );
-
-        setSmartAccount(biconomySmartAccount);
-        setLoading(false);
-    } catch (err) {
-        console.log("error setting up smart account... ", err);
-    }
+    setSmartAccount(biconomySmartAccount);
+    setLoading(false);
+  } catch (err) {
+    console.log("error setting up smart account... ", err);
+  }
 }
 ```
 

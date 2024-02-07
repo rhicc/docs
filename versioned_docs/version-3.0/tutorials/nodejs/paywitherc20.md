@@ -19,16 +19,16 @@ User can pay in any ERC20 token of their choice. Please find the supported list 
 
 Let's review the updated imports necessary for this functionality:
 
-- `IHybridPaymaster`, `SponsorUserOperationDto`, `PaymasterFeeQuote` from` @biconomy/paymaster`: These are additional interfaces to support complex paymaster operations. They play crucial roles in enabling ERC20 token payments for gas fees.
+- `IHybridPaymaster`, `SponsorUserOperationDto`, `PaymasterFeeQuote` from` @biconomy-devx/paymaster`: These are additional interfaces to support complex paymaster operations. They play crucial roles in enabling ERC20 token payments for gas fees.
 
 ```typescript
 // Import necessary modules and configurations
 import { config } from "dotenv"; // dotenv for loading environment variables
-import { IBundler, Bundler } from "@biconomy/bundler"; // Biconomy bundler for gasless transactions
+import { IBundler, Bundler } from "@biconomy-devx/bundler"; // Biconomy bundler for gasless transactions
 import {
   DEFAULT_ENTRYPOINT_ADDRESS,
   BiconomySmartAccountV2,
-} from "@biconomy/account"; // Smart account module
+} from "@biconomy-devx/account"; // Smart account module
 import { Wallet, ethers, providers } from "ethers"; // Ethereum blockchain interactions
 import { ChainId } from "@biconomy/core-types"; // Supported blockchain chain IDs
 import {
@@ -38,7 +38,7 @@ import {
   IHybridPaymaster,
   SponsorUserOperationDto,
   PaymasterFeeQuote,
-} from "@biconomy/paymaster"; // Paymaster interface for ERC20 gas payments
+} from "@biconomy-devx/paymaster"; // Paymaster interface for ERC20 gas payments
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
@@ -88,7 +88,7 @@ const feeQuotesResponse = await biconomyPaymaster.getPaymasterFeeQuotesOrData(
   {
     mode: PaymasterMode.ERC20,
     tokenList: ["0xda5289fcaaf71d52a80a254da614a192b693e977"],
-  },
+  }
 );
 
 // Extracting the fee quotes and the paymaster address responsible for processing ERC20 token payments
@@ -129,7 +129,7 @@ try {
   const paymasterAndDataWithLimits =
     await biconomyPaymaster.getPaymasterAndData(
       partialUserOp,
-      paymasterServiceData,
+      paymasterServiceData
     );
 
   // Updating the partial UserOp with the returned paymaster and data
@@ -197,7 +197,7 @@ async function mintNFT() {
     {
       mode: PaymasterMode.ERC20,
       tokenList: ["0xda5289fcaaf71d52a80a254da614a192b693e977"],
-    },
+    }
   );
 
   // Extracting the fee quotes and the paymaster address responsible for processing ERC20 token payments
@@ -224,7 +224,7 @@ async function mintNFT() {
     const paymasterAndDataWithLimits =
       await biconomyPaymaster.getPaymasterAndData(
         partialUserOp,
-        paymasterServiceData,
+        paymasterServiceData
       );
 
     // Updating the partial UserOp with the returned paymaster and data
@@ -258,7 +258,7 @@ async function mintNFT() {
 
     // Log the transaction details URL and the URL to view minted NFTs
     console.log(
-      `Transaction Details: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`,
+      `Transaction Details: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`
     );
 
     console.log(`View Minted NFTs: https://testnets.opensea.io/${address}`);
@@ -285,11 +285,11 @@ Congratulations you can now execute ERC20 gas payment transactions utilizing the
 ```typescript
 // Import necessary modules and configurations
 import { config } from "dotenv"; // dotenv for loading environment variables from a .env file
-import { IBundler, Bundler } from "@biconomy/bundler"; // Biconomy bundler for managing gasless transactions
+import { IBundler, Bundler } from "@biconomy-devx/bundler"; // Biconomy bundler for managing gasless transactions
 import {
   DEFAULT_ENTRYPOINT_ADDRESS,
   BiconomySmartAccountV2,
-} from "@biconomy/account"; // Default entry point and smart account module from Biconomy
+} from "@biconomy-devx/account"; // Default entry point and smart account module from Biconomy
 import { Wallet, ethers, providers } from "ethers"; // ethers for interacting with the Ethereum blockchain
 import { ChainId } from "@biconomy/core-types"; // Chain IDs for different blockchains supported by Biconomy
 import {
@@ -299,7 +299,7 @@ import {
   IHybridPaymaster,
   SponsorUserOperationDto,
   PaymasterFeeQuote,
-} from "@biconomy/paymaster"; // Paymaster interface and Biconomy implementation
+} from "@biconomy-devx/paymaster"; // Paymaster interface and Biconomy implementation
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
@@ -308,7 +308,7 @@ import {
 config(); // Load environment variables from .env file
 // Set up the Ethereum provider and wallet
 const provider = new providers.JsonRpcProvider(
-  "https://rpc.ankr.com/polygon_mumbai", // JSON-RPC provider URL for the Polygon Mumbai test network
+  "https://rpc.ankr.com/polygon_mumbai" // JSON-RPC provider URL for the Polygon Mumbai test network
 );
 const wallet = new Wallet(process.env.PRIVATE_KEY || "", provider); // Creating a wallet instance with a private key from environment variables
 
@@ -348,7 +348,7 @@ async function createSmartAccount() {
   });
   console.log(
     "Smart Account Address: ",
-    await smartAccount.getAccountAddress(), // Logging the address of the created smart account
+    await smartAccount.getAccountAddress() // Logging the address of the created smart account
   );
   return smartAccount;
 }
@@ -382,7 +382,7 @@ async function mintNFT() {
     {
       mode: PaymasterMode.ERC20,
       tokenList: ["0xda5289fcaaf71d52a80a254da614a192b693e977"],
-    },
+    }
   );
 
   // Extracting the fee quotes and the paymaster address for ERC20 token payments
@@ -409,7 +409,7 @@ async function mintNFT() {
     const paymasterAndDataWithLimits =
       await biconomyPaymaster.getPaymasterAndData(
         partialUserOp,
-        paymasterServiceData,
+        paymasterServiceData
       );
 
     // Updating the partial UserOp with the returned paymaster and data
@@ -438,7 +438,7 @@ async function mintNFT() {
     const userOpResponse = await smartAccount.sendUserOp(partialUserOp);
     const transactionDetails = await userOpResponse.wait();
     console.log(
-      `Transaction details: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`,
+      `Transaction details: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`
     );
     console.log(`View minted NFTs: https://testnets.opensea.io/${address}`);
   } catch (e) {

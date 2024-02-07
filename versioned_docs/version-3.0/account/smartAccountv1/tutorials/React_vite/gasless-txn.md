@@ -42,142 +42,156 @@ In the return for this component lets add the following JSX:
 If you followed all instructions from the last step to now your file should look something like this:
 
 ```js
-import './App.css'
-import "@Biconomy/web3-auth/dist/src/style.css"
-import { useState, useEffect, useRef } from 'react'
-import SocialLogin from "@biconomy/web3-auth"
+import "./App.css";
+import "@Biconomy/web3-auth/dist/src/style.css";
+import { useState, useEffect, useRef } from "react";
+import SocialLogin from "@biconomy/web3-auth";
 import { ChainId } from "@biconomy/core-types";
-import { ethers } from 'ethers'
-import { IBundler, Bundler } from '@biconomy/bundler'
-import { BiconomySmartAccount,BiconomySmartAccountConfig, DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy/account"
-import { IPaymaster, BiconomyPaymaster,} from '@biconomy/paymaster'
-import Counter from './Components/Counter';
-import styles from '@/styles/Home.module.css'
-
+import { ethers } from "ethers";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
+import {
+  BiconomySmartAccount,
+  BiconomySmartAccountConfig,
+  DEFAULT_ENTRYPOINT_ADDRESS,
+} from "@biconomy-devx/account";
+import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
+import Counter from "./Components/Counter";
+import styles from "@/styles/Home.module.css";
 
 const bundler: IBundler = new Bundler({
-  bundlerUrl: 'https://bundler.biconomy.io/api/v2/80001/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44', // you can get this value from biconomy dashboard.
+  bundlerUrl:
+    "https://bundler.biconomy.io/api/v2/80001/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44", // you can get this value from biconomy dashboard.
   chainId: ChainId.POLYGON_MUMBAI,
   entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
-})
+});
 
 const paymaster: IPaymaster = new BiconomyPaymaster({
-  paymasterUrl: 'https://paymaster.biconomy.io/api/v1/80001/cIhIeS-I0.7e1f17b1-6ebb-454c-8499-c5f66dd098c6'
-})
+  paymasterUrl:
+    "https://paymaster.biconomy.io/api/v1/80001/cIhIeS-I0.7e1f17b1-6ebb-454c-8499-c5f66dd098c6",
+});
 
 export default function Home() {
-  const [smartAccount, setSmartAccount] = useState<any>(null)
-  const [interval, enableInterval] = useState(false)
-  const sdkRef = useRef<SocialLogin | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
-  const [provider, setProvider] = useState<any>(null);
+  const [smartAccount, setSmartAccount] = useState < any > null;
+  const [interval, enableInterval] = useState(false);
+  const sdkRef = (useRef < SocialLogin) | (null > null);
+  const [loading, setLoading] = useState < boolean > false;
+  const [provider, setProvider] = useState < any > null;
 
   useEffect(() => {
-    let configureLogin:any
+    let configureLogin: any;
     if (interval) {
       configureLogin = setInterval(() => {
         if (!!sdkRef.current?.provider) {
-          setupSmartAccount()
-          clearInterval(configureLogin)
+          setupSmartAccount();
+          clearInterval(configureLogin);
         }
-      }, 1000)
+      }, 1000);
     }
-  }, [interval])
+  }, [interval]);
 
   async function login() {
     if (!sdkRef.current) {
-      const socialLoginSDK = new SocialLogin()
-      const signature1 = await socialLoginSDK.whitelistUrl("http://127.0.0.1:5173/")
+      const socialLoginSDK = new SocialLogin();
+      const signature1 = await socialLoginSDK.whitelistUrl(
+        "http://127.0.0.1:5173/"
+      );
       await socialLoginSDK.init({
         chainId: ethers.utils.hexValue(ChainId.POLYGON_MUMBAI).toString(),
         network: "testnet",
         whitelistUrls: {
           "http://127.0.0.1:5173/": signature1,
-        }
-      })
-      sdkRef.current = socialLoginSDK
+        },
+      });
+      sdkRef.current = socialLoginSDK;
     }
     if (!sdkRef.current.provider) {
-      sdkRef.current.showWallet()
-      enableInterval(true)
+      sdkRef.current.showWallet();
+      enableInterval(true);
     } else {
-      setupSmartAccount()
+      setupSmartAccount();
     }
   }
 
   async function setupSmartAccount() {
-    if (!sdkRef?.current?.provider) return
-    sdkRef.current.hideWallet()
-    setLoading(true)
+    if (!sdkRef?.current?.provider) return;
+    sdkRef.current.hideWallet();
+    setLoading(true);
     const web3Provider = new ethers.providers.Web3Provider(
       sdkRef.current.provider
-    )
-    setProvider(web3Provider)
+    );
+    setProvider(web3Provider);
 
     try {
       const biconomySmartAccountConfig: BiconomySmartAccountConfig = {
         signer: web3Provider.getSigner(),
         chainId: ChainId.POLYGON_MUMBAI,
         bundler: bundler,
-        paymaster: paymaster
-      }
-      let biconomySmartAccount = new BiconomySmartAccount(biconomySmartAccountConfig)
-      biconomySmartAccount =  await biconomySmartAccount.init()
-      console.log("owner: ", biconomySmartAccount.owner)
-      console.log("address: ", await biconomySmartAccount.getSmartAccountAddress())
-      console.log("deployed: ", await biconomySmartAccount.isAccountDeployed( await biconomySmartAccount.getSmartAccountAddress()))
+        paymaster: paymaster,
+      };
+      let biconomySmartAccount = new BiconomySmartAccount(
+        biconomySmartAccountConfig
+      );
+      biconomySmartAccount = await biconomySmartAccount.init();
+      console.log("owner: ", biconomySmartAccount.owner);
+      console.log(
+        "address: ",
+        await biconomySmartAccount.getSmartAccountAddress()
+      );
+      console.log(
+        "deployed: ",
+        await biconomySmartAccount.isAccountDeployed(
+          await biconomySmartAccount.getSmartAccountAddress()
+        )
+      );
 
-      setSmartAccount(biconomySmartAccount)
-      setLoading(false)
+      setSmartAccount(biconomySmartAccount);
+      setLoading(false);
     } catch (err) {
-      console.log('error setting up smart account... ', err)
+      console.log("error setting up smart account... ", err);
     }
   }
 
   const logout = async () => {
     if (!sdkRef.current) {
-      console.error('Web3Modal not initialized.')
-      return
+      console.error("Web3Modal not initialized.");
+      return;
     }
-    await sdkRef.current.logout()
-    sdkRef.current.hideWallet()
-    setSmartAccount(null)
-    enableInterval(false)
-  }
+    await sdkRef.current.logout();
+    sdkRef.current.hideWallet();
+    setSmartAccount(null);
+    enableInterval(false);
+  };
 
   return (
     <div>
-      <h1> Biconomy Smart Accounts using social login + Gasless Transactions</h1>
+      <h1>
+        {" "}
+        Biconomy Smart Accounts using social login + Gasless Transactions
+      </h1>
 
-      {
-        !smartAccount && !loading && <button onClick={login}>Login</button>
-      }
-      {
-        loading && <p>Loading account details...</p>
-      }
-      {
-        !!smartAccount && (
-          <div className="buttonWrapper">
-            <h3>Smart account address:</h3>
-            <p>{smartAccount.address}</p>
-            <Counter smartAccount={smartAccount} provider={provider} />
-            <button onClick={logout}>Logout</button>
-          </div>
-        )
-      }
+      {!smartAccount && !loading && <button onClick={login}>Login</button>}
+      {loading && <p>Loading account details...</p>}
+      {!!smartAccount && (
+        <div className="buttonWrapper">
+          <h3>Smart account address:</h3>
+          <p>{smartAccount.address}</p>
+          <Counter smartAccount={smartAccount} provider={provider} />
+          <button onClick={logout}>Logout</button>
+        </div>
+      )}
       <p>
-      Edit <code>src/App.tsx</code> and save to test
+        Edit <code>src/App.tsx</code> and save to test
       </p>
-      <a href="https://docs.biconomy.io/docs/overview" target="_blank" className="read-the-docs">
-  Click here to check out the docs
-    </a>
+      <a
+        href="https://docs.biconomy.io/docs/overview"
+        target="_blank"
+        className="read-the-docs"
+      >
+        Click here to check out the docs
+      </a>
     </div>
-  )
+  );
 }
-
-
-
-
 ```
 
 Now lets create our Counter component!
@@ -194,12 +208,12 @@ Let's add our imports for this file:
 
 ```js
 import React, { useState, useEffect } from "react";
-import { BiconomySmartAccount } from "@biconomy/account";
+import { BiconomySmartAccount } from "@biconomy-devx/account";
 import {
   IHybridPaymaster,
   SponsorUserOperationDto,
   PaymasterMode,
-} from "@biconomy/paymaster";
+} from "@biconomy-devx/paymaster";
 import abi from "../utils/counterAbi.json";
 import { ethers } from "ethers";
 import { ToastContainer, toast } from "react-toastify";
@@ -438,17 +452,20 @@ Congratulations you just created your first AA powered dApp. Users can now log i
 
 ```ts
 import React, { useState, useEffect } from "react";
-import { BiconomySmartAccount} from "@biconomy/account"
-import {  IHybridPaymaster,SponsorUserOperationDto, PaymasterMode,} from '@biconomy/paymaster'
+import { BiconomySmartAccount } from "@biconomy-devx/account";
+import {
+  IHybridPaymaster,
+  SponsorUserOperationDto,
+  PaymasterMode,
+} from "@biconomy-devx/paymaster";
 import abi from "../utils/counterAbi.json";
 import { ethers } from "ethers";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Props {
-  smartAccount: BiconomySmartAccount
-  provider: any
+  smartAccount: BiconomySmartAccount;
+  provider: any;
 }
 
 const TotalCountDisplay: React.FC<{ count: number }> = ({ count }) => {
@@ -473,7 +490,7 @@ const Counter: React.FC<Props> = ({ smartAccount, provider }) => {
     const currentCount = await contract.count();
     setCount(currentCount.toNumber());
     if (isUpdating) {
-      toast.success('Count has been updated!', {
+      toast.success("Count has been updated!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -488,7 +505,7 @@ const Counter: React.FC<Props> = ({ smartAccount, provider }) => {
 
   const incrementCount = async () => {
     try {
-      toast.info('Processing count on the blockchain!', {
+      toast.info("Processing count on the blockchain!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -499,7 +516,9 @@ const Counter: React.FC<Props> = ({ smartAccount, provider }) => {
         theme: "dark",
       });
 
-      const incrementTx = new ethers.utils.Interface(["function incrementCount()"]);
+      const incrementTx = new ethers.utils.Interface([
+        "function incrementCount()",
+      ]);
       const data = incrementTx.encodeFunctionData("incrementCount");
 
       const tx1 = {
@@ -509,7 +528,8 @@ const Counter: React.FC<Props> = ({ smartAccount, provider }) => {
 
       let partialUserOp = await smartAccount.buildUserOp([tx1]);
 
-      const biconomyPaymaster = smartAccount.paymaster as IHybridPaymaster<SponsorUserOperationDto>;
+      const biconomyPaymaster =
+        smartAccount.paymaster as IHybridPaymaster<SponsorUserOperationDto>;
 
       let paymasterServiceData: SponsorUserOperationDto = {
         mode: PaymasterMode.SPONSORED,
@@ -517,8 +537,13 @@ const Counter: React.FC<Props> = ({ smartAccount, provider }) => {
       };
 
       try {
-        const paymasterAndDataResponse = await biconomyPaymaster.getPaymasterAndData(partialUserOp, paymasterServiceData);
-        partialUserOp.paymasterAndData = paymasterAndDataResponse.paymasterAndData;
+        const paymasterAndDataResponse =
+          await biconomyPaymaster.getPaymasterAndData(
+            partialUserOp,
+            paymasterServiceData
+          );
+        partialUserOp.paymasterAndData =
+          paymasterAndDataResponse.paymasterAndData;
 
         const userOpResponse = await smartAccount.sendUserOp(partialUserOp);
         const transactionDetails = await userOpResponse.wait();
@@ -544,7 +569,7 @@ const Counter: React.FC<Props> = ({ smartAccount, provider }) => {
       }
     } catch (error) {
       console.error("Error executing transaction:", error);
-      toast.error('Error occurred, check the console', {
+      toast.error("Error occurred, check the console", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -579,7 +604,6 @@ const Counter: React.FC<Props> = ({ smartAccount, provider }) => {
 };
 
 export default Counter;
-
 ```
 
 If you would like to see the completed project on github you can use the template below:

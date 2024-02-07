@@ -17,27 +17,27 @@ import TabItem from "@theme/TabItem";
 <TabItem value="js" label="npm">
 
 ```bash
-npm install @biconomy/paymaster
+npm install @biconomy-devx/paymaster
 ```
 
 </TabItem>
 <TabItem value="py" label="yarn">
 
 ```bash
-yarn add @biconomy/paymaster
+yarn add @biconomy-devx/paymaster
 ```
 
 </TabItem>
 <TabItem value="java" label="pnpm">
 
 ```bash
-pnpm add @biconomy/paymaster
+pnpm add @biconomy-devx/paymaster
 ```
 
 </TabItem>
 </Tabs>
 
-## Integration 
+## Integration
 
 Set up a paymaster for the smart account by providing only the paymaster API key. The default mode used is `Sponsored` mode in this case.
 :::info
@@ -47,7 +47,7 @@ Set up a paymaster for the smart account by providing only the paymaster API key
 :::
 
 ```typescript
-  import { BiconomySmartAccountV2 } from "@biconomy/account";
+  import { BiconomySmartAccountV2 } from "@biconomy-devx/account";
 
   const biconomySmartAccount = await BiconomySmartAccountV2.create(
     {
@@ -58,11 +58,12 @@ Set up a paymaster for the smart account by providing only the paymaster API key
     }
   );
 ```
+
 If you wish to pass "strictMode" to your Paymaster you need to create the instace.
 
 ```typescript
-  import { IPaymaster, BiconomyPaymaster } from "@biconomy/paymaster";
-  import { BiconomySmartAccountV2 } from "@biconomy/account";
+  import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
+  import { BiconomySmartAccountV2 } from "@biconomy-devx/account";
 
   const paymaster: IPaymaster = new BiconomyPaymaster({
     //https://dashboard.biconomy.io/ get paymaster urls from your dashboard

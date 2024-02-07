@@ -19,7 +19,7 @@ import TabItem from "@theme/TabItem";
 
 ```bash
 
-npm install @biconomy/account @biconomy/bundler @biconomy/paymaster @biconomy/common @biconomy/core-types @biconomy/modules
+npm install @biconomy-devx/account @biconomy-devx/bundler @biconomy-devx/paymaster @biconomy/common @biconomy/core-types @biconomy/modules
 
 ```
 
@@ -28,7 +28,7 @@ npm install @biconomy/account @biconomy/bundler @biconomy/paymaster @biconomy/co
 
 ```bash
 
-yarn add @biconomy/account @biconomy/bundler @biconomy/paymaster @biconomy/common @biconomy/core-types @biconomy/modules
+yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy-devx/paymaster @biconomy/common @biconomy/core-types @biconomy/modules
 
 ```
 
@@ -37,7 +37,7 @@ yarn add @biconomy/account @biconomy/bundler @biconomy/paymaster @biconomy/commo
 
 ```bash
 
-pnpm add @biconomy/account @biconomy/bundler @biconomy/paymaster @biconomy/common @biconomy/core-types @biconomy/modules
+pnpm add @biconomy-devx/account @biconomy-devx/bundler @biconomy-devx/paymaster @biconomy/common @biconomy/core-types @biconomy/modules
 
 ```
 
@@ -49,8 +49,8 @@ pnpm add @biconomy/account @biconomy/bundler @biconomy/paymaster @biconomy/commo
 Now you can simply create smart accounts like this.
 
 ```typescript
-  import { ethers } from "ethers";	
-  import { BiconomySmartAccountV2} from "@biconomy/account";
+  import { ethers } from "ethers";
+  import { BiconomySmartAccountV2} from "@biconomy-devx/account";
 
   let provider = new ethers.providers.JsonRpcProvider("rpcUrl");
   let signer = new ethers.Wallet("private key", provider);
@@ -66,7 +66,9 @@ Now you can simply create smart accounts like this.
     biconomySmartAccountConfig
   );
 ```
+
 This smart account uses the following default values:
+
 - ECDSA Validation Module
 - default entry point address for the chainId
 - paymaster instance is created by the SDK

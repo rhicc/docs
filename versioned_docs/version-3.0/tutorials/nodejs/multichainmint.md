@@ -21,12 +21,12 @@ Begin by importing the necessary modules for blockchain interaction and configur
 
 ```typescript
 import { config } from "dotenv";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import { ChainId } from "@biconomy/core-types";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import {
   MultiChainValidationModule,
   DEFAULT_MULTICHAIN_MODULE,
@@ -37,7 +37,7 @@ import {
   BiconomyPaymaster,
   PaymasterMode,
   SponsorUserOperationDto,
-} from "@biconomy/paymaster";
+} from "@biconomy-devx/paymaster";
 ```
 
 ### Setting Up Ethereum Provider and Wallet
@@ -47,7 +47,7 @@ Establish your Ethereum provider and wallet for interacting with the blockchain.
 ```typescript
 config();
 const provider = new ethers.providers.JsonRpcProvider(
-  "https://rpc.ankr.com/polygon_mumbai",
+  "https://rpc.ankr.com/polygon_mumbai"
 );
 const wallet = new ethers.Wallet(process.env.PRIVATE_KEY || "", provider);
 ```
@@ -108,7 +108,7 @@ Generate Smart Accounts for Polygon Mumbai and Base Goerli Testnet using the Mul
 async function createSmartAccount(
   chainId: ChainId,
   bundler: IBundler,
-  paymaster: IPaymaster,
+  paymaster: IPaymaster
 ) {
   const module = await createModule();
   let smartAccount = await BiconomySmartAccountV2.create({
@@ -121,7 +121,7 @@ async function createSmartAccount(
   });
   console.log(
     "Smart Account Address: ",
-    await smartAccount.getAccountAddress(),
+    await smartAccount.getAccountAddress()
   );
   return smartAccount;
 }
@@ -143,12 +143,12 @@ First, we create smart accounts for both networks. Each account is configured wi
 const mumbaiSmartAccount = await createSmartAccount(
   ChainId.POLYGON_MUMBAI,
   mumbaiBundler,
-  mumbaiPaymaster,
+  mumbaiPaymaster
 );
 const baseSmartAccount = await createSmartAccount(
   ChainId.BASE_GOERLI_TESTNET,
   baseBundler,
-  basePaymaster,
+  basePaymaster
 );
 ```
 
@@ -172,11 +172,11 @@ For each network, we build a user operation (UserOp) for the minting transaction
 ```typescript
 let partialUserOp = await mumbaiSmartAccount.buildUserOp(
   [{ to: nftAddress, data }],
-  { paymasterServiceData: { mode: PaymasterMode.SPONSORED } },
+  { paymasterServiceData: { mode: PaymasterMode.SPONSORED } }
 );
 let partialUserOp2 = await baseSmartAccount.buildUserOp(
   [{ to: nftAddress, data }],
-  { paymasterServiceData: { mode: PaymasterMode.SPONSORED } },
+  { paymasterServiceData: { mode: PaymasterMode.SPONSORED } }
 );
 ```
 
@@ -198,21 +198,21 @@ Finally, we execute the signed operations on each network. The function waits fo
 ```typescript
 try {
   const userOpResponse1 = await mumbaiSmartAccount.sendSignedUserOp(
-    resolvedOps[0],
+    resolvedOps[0]
   );
   const userOpResponse2 = await baseSmartAccount.sendSignedUserOp(
-    resolvedOps[1],
+    resolvedOps[1]
   );
 
   const transactionDetails1 = await userOpResponse1.wait();
   const transactionDetails2 = await userOpResponse2.wait();
   console.log(
     "Polygon Mumbai Transaction: https://mumbai.polygonscan.com/tx/" +
-      transactionDetails1.receipt.transactionHash,
+      transactionDetails1.receipt.transactionHash
   );
   console.log(
     "Base Goerli Transaction: https://goerli.basescan.org/tx/" +
-      transactionDetails2.receipt.transactionHash,
+      transactionDetails2.receipt.transactionHash
   );
 } catch (e) {
   console.log("Error:", e);
@@ -236,12 +236,12 @@ async function mintNFT() {
   const mumbaiSmartAccount = await createSmartAccount(
     ChainId.POLYGON_MUMBAI,
     mumbaiBundler,
-    mumbaiPaymaster,
+    mumbaiPaymaster
   );
   const baseSmartAccount = await createSmartAccount(
     ChainId.BASE_GOERLI_TESTNET,
     baseBundler,
-    basePaymaster,
+    basePaymaster
   );
 
   // Define the interface for the NFT contract and encode data for the 'safeMint' function
@@ -258,7 +258,7 @@ async function mintNFT() {
     [{ to: nftAddress, data }],
     {
       paymasterServiceData: { mode: PaymasterMode.SPONSORED },
-    },
+    }
   );
 
   // Build user operations for the Base Goerli network
@@ -266,7 +266,7 @@ async function mintNFT() {
     [{ to: nftAddress, data }],
     {
       paymasterServiceData: { mode: PaymasterMode.SPONSORED },
-    },
+    }
   );
 
   // Sign operations for both networks
@@ -280,21 +280,21 @@ async function mintNFT() {
   // Execute the operations on both networks and log the transaction details
   try {
     const userOpResponse1 = await mumbaiSmartAccount.sendSignedUserOp(
-      resolvedOps[0],
+      resolvedOps[0]
     );
     const userOpResponse2 = await baseSmartAccount.sendSignedUserOp(
-      resolvedOps[1],
+      resolvedOps[1]
     );
 
     const transactionDetails1 = await userOpResponse1.wait();
     const transactionDetails2 = await userOpResponse2.wait();
     console.log(
       "Polygon Mumbai Transaction: https://mumbai.polygonscan.com/tx/" +
-        transactionDetails1.receipt.transactionHash,
+        transactionDetails1.receipt.transactionHash
     );
     console.log(
       "Base Goerli Transaction: https://goerli.basescan.org/tx/" +
-        transactionDetails2.receipt.transactionHash,
+        transactionDetails2.receipt.transactionHash
     );
   } catch (e) {
     console.log("Error encountered: ", e);
@@ -315,12 +315,12 @@ Through this setup, you've unlocked the potential to mint NFTs across multiple b
 
 ```typescript
 import { config } from "dotenv";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import { ChainId } from "@biconomy/core-types";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import {
   MultiChainValidationModule,
   DEFAULT_MULTICHAIN_MODULE,
@@ -331,11 +331,11 @@ import {
   BiconomyPaymaster,
   PaymasterMode,
   SponsorUserOperationDto,
-} from "@biconomy/paymaster";
+} from "@biconomy-devx/paymaster";
 
 config();
 const provider = new ethers.providers.JsonRpcProvider(
-  "https://rpc.ankr.com/polygon_mumbai",
+  "https://rpc.ankr.com/polygon_mumbai"
 );
 const wallet = new ethers.Wallet(process.env.PRIVATE_KEY || "", provider);
 
@@ -376,7 +376,7 @@ async function createModule() {
 async function createSmartAccount(
   chainId: ChainId,
   bundler: IBundler,
-  paymaster: IPaymaster,
+  paymaster: IPaymaster
 ) {
   const module = await createModule();
   let smartAccount = await BiconomySmartAccountV2.create({
@@ -389,7 +389,7 @@ async function createSmartAccount(
   });
   console.log(
     "Smart Account Address: ",
-    await smartAccount.getAccountAddress(),
+    await smartAccount.getAccountAddress()
   );
   return smartAccount;
 }
@@ -399,12 +399,12 @@ async function mintNFT() {
   const mumbaiSmartAccount = await createSmartAccount(
     ChainId.POLYGON_MUMBAI,
     mumbaiBundler,
-    mumbaiPaymaster,
+    mumbaiPaymaster
   );
   const baseSmartAccount = await createSmartAccount(
     ChainId.BASE_GOERLI_TESTNET,
     baseBundler,
-    basePaymaster,
+    basePaymaster
   );
 
   // Define the interface for the NFT contract and encode data for the 'safeMint' function
@@ -421,7 +421,7 @@ async function mintNFT() {
     [{ to: nftAddress, data }],
     {
       paymasterServiceData: { mode: PaymasterMode.SPONSORED },
-    },
+    }
   );
 
   // Build user operations for the Base Goerli network
@@ -429,7 +429,7 @@ async function mintNFT() {
     [{ to: nftAddress, data }],
     {
       paymasterServiceData: { mode: PaymasterMode.SPONSORED },
-    },
+    }
   );
 
   // Sign operations for both networks
@@ -443,21 +443,21 @@ async function mintNFT() {
   // Execute the operations on both networks and log the transaction details
   try {
     const userOpResponse1 = await mumbaiSmartAccount.sendSignedUserOp(
-      resolvedOps[0],
+      resolvedOps[0]
     );
     const userOpResponse2 = await baseSmartAccount.sendSignedUserOp(
-      resolvedOps[1],
+      resolvedOps[1]
     );
 
     const transactionDetails1 = await userOpResponse1.wait();
     const transactionDetails2 = await userOpResponse2.wait();
     console.log(
       "Polygon Mumbai Transaction: https://mumbai.polygonscan.com/tx/" +
-        transactionDetails1.receipt.transactionHash,
+        transactionDetails1.receipt.transactionHash
     );
     console.log(
       "Base Goerli Transaction: https://goerli.basescan.org/tx/" +
-        transactionDetails2.receipt.transactionHash,
+        transactionDetails2.receipt.transactionHash
     );
   } catch (e) {
     console.log("Error encountered: ", e);

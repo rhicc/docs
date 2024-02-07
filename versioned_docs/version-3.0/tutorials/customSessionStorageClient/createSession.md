@@ -55,7 +55,7 @@ const sessionKeyData = defaultAbiCoder.encode(
     "0xdA5289fCAAF71d52a80A254da614a192b693e977", // erc20 token address
     "0x322Af0da66D00be980C7aa006377FCaaEee3BDFD", // receiver address
     ethers.utils.parseUnits("50".toString(), 6).toHexString(), // 50 usdc amount
-  ],
+  ]
 );
 ```
 
@@ -77,11 +77,11 @@ We're going to be tracking if the session key module is already enabled. If we n
 
 ```typescript
 const isEnabled = await smartAccount.isModuleEnabled(
-  DEFAULT_SESSION_KEY_MANAGER_MODULE,
+  DEFAULT_SESSION_KEY_MANAGER_MODULE
 );
 if (!isEnabled) {
   const enableModuleTrx = await smartAccount.getEnableModuleData(
-    DEFAULT_SESSION_KEY_MANAGER_MODULE,
+    DEFAULT_SESSION_KEY_MANAGER_MODULE
   );
   transactionArray.push(enableModuleTrx);
 }
@@ -130,18 +130,18 @@ import {
   DEFAULT_SESSION_KEY_MANAGER_MODULE,
 } from "@biconomy/modules";
 import { config } from "dotenv";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
 import {
   IPaymaster,
   BiconomyPaymaster,
   PaymasterMode,
-} from "@biconomy/paymaster";
+} from "@biconomy-devx/paymaster";
 import { SessionFileStorage } from "./customSession";
 
 let smartAccount: BiconomySmartAccountV2;
@@ -164,7 +164,7 @@ const paymaster: IPaymaster = new BiconomyPaymaster({
 });
 
 const provider = new providers.JsonRpcProvider(
-  "https://rpc.ankr.com/polygon_mumbai",
+  "https://rpc.ankr.com/polygon_mumbai"
 );
 const wallet = new Wallet(process.env.PRIVATE_KEY || "", provider);
 
@@ -198,14 +198,14 @@ const createSession = async () => {
     const sessionKeyEOA = await sessionSigner.getAddress();
     console.log("sessionKeyEOA", sessionKeyEOA);
     const sessionFileStorage: SessionFileStorage = new SessionFileStorage(
-      address,
+      address
     );
 
     // generate sessionModule
     console.log(
       "Adding session signer",
       sessionSigner.publicKey,
-      sessionSigner,
+      sessionSigner
     );
 
     await sessionFileStorage.addSigner(sessionSigner);
@@ -223,7 +223,7 @@ const createSession = async () => {
         "0xdA5289fCAAF71d52a80A254da614a192b693e977", // erc20 token address
         "0x322Af0da66D00be980C7aa006377FCaaEee3BDFD", // receiver address
         ethers.utils.parseUnits("50".toString(), 6).toHexString(), // 50 usdc amount
-      ],
+      ]
     );
     const sessionTxData = await sessionModule.createSessionData([
       {
@@ -244,11 +244,11 @@ const createSession = async () => {
     const transactionArray = [];
 
     const isEnabled = await smartAccount.isModuleEnabled(
-      DEFAULT_SESSION_KEY_MANAGER_MODULE,
+      DEFAULT_SESSION_KEY_MANAGER_MODULE
     );
     if (!isEnabled) {
       const enableModuleTrx = await smartAccount.getEnableModuleData(
-        DEFAULT_SESSION_KEY_MANAGER_MODULE,
+        DEFAULT_SESSION_KEY_MANAGER_MODULE
       );
       transactionArray.push(enableModuleTrx);
     }

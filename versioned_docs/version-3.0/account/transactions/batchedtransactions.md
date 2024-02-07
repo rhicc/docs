@@ -25,7 +25,7 @@ import {
   IHybridPaymaster,
   SponsorUserOperationDto,
   PaymasterMode,
-} from "@biconomy/paymaster";
+} from "@biconomy-devx/paymaster";
 ```
 
 Additionally an Instance of the BiconomySmartAccount is needed as mentioned above.

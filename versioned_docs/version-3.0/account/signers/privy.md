@@ -21,7 +21,7 @@ In your app's repository, install the `@privy-io/react-auth` SDK from Privy and 
 
 ```bash
 
-yarn add @privy-io/react-auth @biconomy/account @biconomy/bundler @biconomy/common @biconomy/core-types @biconomy/paymaster
+yarn add @privy-io/react-auth @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy-devx/paymaster
 
 ```
 
@@ -90,8 +90,8 @@ Next, initialize instances of a Biconomy `bundler` and `paymaster` for the user,
 
 ```tsx
 
-import { IBundler, Bundler } from '@biconomy/bundler';
-import { IPaymaster, BiconomyPaymaster } from '@biconomy/paymaster';
+import { IBundler, Bundler } from '@biconomy-devx/bundler';
+import { IPaymaster, BiconomyPaymaster } from '@biconomy-devx/paymaster';
 import { ChainId } from "@biconomy/core-types";
 
 ...
@@ -132,7 +132,7 @@ Lastly, using the user's paymaster, bundler, and validation module instances fro
 
 ```tsx
 
-import { BiconomySmartAccountV2, DEFAULT_ENTRYPOINT_ADDRESS  } from "@biconomy/account";
+import { BiconomySmartAccountV2, DEFAULT_ENTRYPOINT_ADDRESS  } from "@biconomy-devx/account";
 
 ...
 
@@ -153,11 +153,11 @@ const smartAccount = await BiconomySmartAccountV2.create({
 
 ```tsx
 import { useWallets } from '@privy-io/react-auth';
-import { IBundler, Bundler } from '@biconomy/bundler';
-import { IPaymaster, BiconomyPaymaster } from '@biconomy/paymaster';
+import { IBundler, Bundler } from '@biconomy-devx/bundler';
+import { IPaymaster, BiconomyPaymaster } from '@biconomy-devx/paymaster';
 import { ChainId } from "@biconomy/core-types";
 import { ECDSAOwnershipValidationModule, DEFAULT_ECDSA_OWNERSHIP_MODULE } from "@biconomy/modules";
-import { BiconomySmartAccountV2, DEFAULT_ENTRYPOINT_ADDRESS  } from "@biconomy/account";
+import { BiconomySmartAccountV2, DEFAULT_ENTRYPOINT_ADDRESS  } from "@biconomy-devx/account";
 
 ...
 

@@ -12,7 +12,7 @@ This section shows how to use Viem to create a Smart Account with Biconomy. If y
 You will need the following dependencies to create a Smart Account this way:
 
 ```bash
-yarn add viem @alchemy/aa-core @biconomy/account @biconomy/bundler @biconomy/common @biconomy/modules @biconomy/paymaster
+yarn add viem @alchemy/aa-core @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/modules @biconomy-devx/paymaster
 ```
 
 ## Imports
@@ -28,11 +28,11 @@ import {
 } from "viem";
 import { baseGoerli } from "viem/chains";
 import "viem/window";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
@@ -44,7 +44,7 @@ import {
   IHybridPaymaster,
   SponsorUserOperationDto,
   PaymasterMode,
-} from "@biconomy/paymaster";
+} from "@biconomy-devx/paymaster";
 import { WalletClientSigner } from "@alchemy/aa-core";
 ```
 
@@ -112,8 +112,10 @@ const createSmartAccount = async () => {
 ```
 
 ## Create the Biconomy Smart Account with ECDSA default
-In the latest version of the SDK (3.1.2) we can easily create a smart account with ECDSA validation module without creating the instance, this will now require to pass signer directly to the smart account. 
+
+In the latest version of the SDK (3.1.2) we can easily create a smart account with ECDSA validation module without creating the instance, this will now require to pass signer directly to the smart account.
 WalletClientSigner can now be passed.
+
 ```typescript
 const createSmartAccount = async () => {
   if (!walletClient) return;

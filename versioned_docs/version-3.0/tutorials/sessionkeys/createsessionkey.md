@@ -24,11 +24,14 @@ Let's add our imports to this file and create an interface for our props.
 ```javascript
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { SessionKeyManagerModule, DEFAULT_SESSION_KEY_MANAGER_MODULE  } from "@biconomy/modules";
-import { BiconomySmartAccountV2 } from "@biconomy/account"
+import {
+  SessionKeyManagerModule,
+  DEFAULT_SESSION_KEY_MANAGER_MODULE,
+} from "@biconomy/modules";
+import { BiconomySmartAccountV2 } from "@biconomy-devx/account";
 import { defaultAbiCoder } from "ethers/lib/utils";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface props {
   smartAccount: BiconomySmartAccountV2;
@@ -42,18 +45,15 @@ Our component props will take the smart account instancs, the address, and provi
 The initial component should look like this:
 
 ```javascript
-
-  const CreateSession: React.FC<props> = ({ smartAccount, address, provider }) => {
-
-  return (
-    <div>
-    </div>
-
-  )
-}
+const CreateSession: React.FC<props> = ({
+  smartAccount,
+  address,
+  provider,
+}) => {
+  return <div></div>;
+};
 
 export default CreateSession;
-
 ```
 
 You can go ahead an import it into your `index.tsx` at this point as well and add it before the closing main tag like this:
@@ -78,8 +78,8 @@ Continuing with the session key component let's create our state variables:
 
 ```javascript
 const [isSessionKeyModuleEnabled, setIsSessionKeyModuleEnabled] =
-  useState <boolean>(false);
-const [isSessionActive, setIsSessionActive] = useState <boolean> (false);
+  useState < boolean > false;
+const [isSessionActive, setIsSessionActive] = useState < boolean > false;
 ```
 
 We're going to be tracking if the session key module is enabled and if there is an active session.
@@ -246,7 +246,7 @@ const sessionKeyData = defaultAbiCoder.encode(
     "0xdA5289fCAAF71d52a80A254da614a192b693e977", // erc20 token address
     "0x322Af0da66D00be980C7aa006377FCaaEee3BDFD", // receiver address
     ethers.utils.parseUnits("50".toString(), 6).toHexString(), // 50 usdc amount
-  ],
+  ]
 );
 ```
 
@@ -283,7 +283,7 @@ Now we construct the transaction to actually set the session key and create an a
 if (enableSessionKeyModule) {
   // -----> enableModule session manager module
   const enableModuleTrx = await smartAccount.getEnableModuleData(
-    DEFAULT_SESSION_KEY_MANAGER_MODULE,
+    DEFAULT_SESSION_KEY_MANAGER_MODULE
   );
   transactionArray.push(enableModuleTrx);
 }

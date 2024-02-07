@@ -38,11 +38,11 @@ Install the following dependencies:
 
 ```bash
 yarn add
-    @biconomy/account
-    @biconomy/bundler
+    @biconomy-devx/account
+    @biconomy-devx/bundler
     @biconomy/common
     @biconomy/core-types
-    @biconomy/paymaster
+    @biconomy-devx/paymaster
     @biconomy/web3-auth
     @biconomy/node-client -S
 ```

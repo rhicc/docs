@@ -18,13 +18,10 @@ export default function Home() {
         <title>Based Account Abstraction</title>
         <meta name="description" content="Based Account Abstraction" />
       </Head>
-      <main className={styles.main}>
-
-      </main>
+      <main className={styles.main}></main>
     </>
-  )
+  );
 }
-
 ```
 
 Notice I changed my title and description, feel free to do that. On the main tags I added a className for `styles.main` to get all my contect the centered look.
@@ -66,7 +63,7 @@ const connect = async () => {
     console.log({ particleProvider });
     const web3Provider = new ethers.providers.Web3Provider(
       particleProvider,
-      "any",
+      "any"
     );
   } catch (error) {
     console.error(error);
@@ -77,9 +74,12 @@ const connect = async () => {
 Let's create a button in our component that will execute the above function on click:
 
 ```typescript
-    <main className={styles.main}>
-      <button className={styles.connect} onClick={connect}> Connect </button>
-    </main>
+<main className={styles.main}>
+  <button className={styles.connect} onClick={connect}>
+    {" "}
+    Connect{" "}
+  </button>
+</main>
 ```
 
 We pass the connect function to the `onClick` handler and pass some more styles from our styles object. Try this out you now log in with several different social providers or via email with a one time password. General user information will be logged into the console upon succesful login.
@@ -92,15 +92,15 @@ Add the following imports to your `index.tsx`:
 
 ```typescript
 import { useState } from "react";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
   BiconomySmartAccount,
   BiconomySmartAccountConfig,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import { ethers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
-import { IPaymaster, BiconomyPaymaster } from "@biconomy/paymaster";
+import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
 ```
 
 Now in the React component we're going to define the instance of our Bundler and Paymaster:
@@ -125,10 +125,10 @@ We're also going to add some state variables to the component along with their t
 const [address, setAddress] = useState<string>("");
 const [loading, setLoading] = useState<boolean>(false);
 const [smartAccount, setSmartAccount] = useState<BiconomySmartAccount | null>(
-  null,
+  null
 );
 const [provider, setProvider] = useState<ethers.providers.Provider | null>(
-  null,
+  null
 );
 ```
 
@@ -143,7 +143,7 @@ const connect = async () => {
     const particleProvider = new ParticleProvider(particle.auth);
     const web3Provider = new ethers.providers.Web3Provider(
       particleProvider,
-      "any",
+      "any"
     );
     setProvider(web3Provider);
     const biconomySmartAccountConfig: BiconomySmartAccountConfig = {
@@ -153,7 +153,7 @@ const connect = async () => {
       paymaster: paymaster,
     };
     let biconomySmartAccount = new BiconomySmartAccount(
-      biconomySmartAccountConfig,
+      biconomySmartAccountConfig
     );
     biconomySmartAccount = await biconomySmartAccount.init();
     setAddress(await biconomySmartAccount.getSmartAccountAddress());
@@ -168,13 +168,17 @@ const connect = async () => {
 Now upon login we're also in the background creating a Smart Account for our users. Let's update the JSX in the component as well:
 
 ```typescript
-   <main className={styles.main}>
-    <h1>Based Account Abstraction</h1>
-    <h2>Connect and Mint your AA powered NFT now</h2>
-    {!loading && !address && <button onClick={connect} className={styles.connect}>Connect to Based Web3</button>}
-    {loading && <p>Loading Smart Account...</p>}
-    {address && <h2>Smart Account: {address}</h2>}
-  </main>
+<main className={styles.main}>
+  <h1>Based Account Abstraction</h1>
+  <h2>Connect and Mint your AA powered NFT now</h2>
+  {!loading && !address && (
+    <button onClick={connect} className={styles.connect}>
+      Connect to Based Web3
+    </button>
+  )}
+  {loading && <p>Loading Smart Account...</p>}
+  {address && <h2>Smart Account: {address}</h2>}
+</main>
 ```
 
 Now when we login our Smart account address will be displayed for us on the screen. You'll notice that the main thing we need for interaction between Particle Auth and the Biconomy Smart Account is an ethers provider object. Keep this in mind if you want to use any other auth provider, as long as you can pass the ethers provider object your auth tool of choice will be compatible with the Biconomy SDK.

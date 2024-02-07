@@ -74,8 +74,8 @@ Now our code is configured to access the environment variable as needed.
 Let’s import our bundler package, and providers from the ethers package:
 
 ```typescript
-import { IBundler, Bundler } from "@biconomy/bundler";
-import { DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy/account";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
+import { DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy-devx/account";
 import { providers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
 ```
@@ -103,7 +103,7 @@ import {
   BiconomySmartAccount,
   BiconomySmartAccountConfig,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
 ```
 
@@ -111,7 +111,7 @@ Update your import from the account package to also include BiconomySmartAccount
 
 ```typescript
 const provider = new providers.JsonRpcProvider(
-  "https://rpc.ankr.com/polygon_mumbai",
+  "https://rpc.ankr.com/polygon_mumbai"
 );
 const wallet = new Wallet(process.env.PRIVATE_KEY || "", provider);
 ```
@@ -138,7 +138,7 @@ Here we’re using the `BiconomySmartAccountConfig` typing to help us structure 
 ```typescript
 async function createAccount() {
   let biconomySmartAccount = new BiconomySmartAccount(
-    biconomySmartAccountConfig,
+    biconomySmartAccountConfig
   );
   biconomySmartAccount = await biconomySmartAccount.init();
   console.log("owner: ", biconomySmartAccount.owner);
@@ -205,9 +205,9 @@ Check out the long transaction details available now in your console! You just c
 
 ```typescript
 import { config } from "dotenv"
-import { IBundler, Bundler } from '@biconomy/bundler'
+import { IBundler, Bundler } from '@biconomy-devx/bundler'
 import { ChainId } from "@biconomy/core-types";
-import { BiconomySmartAccount, BiconomySmartAccountConfig, DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy/account"
+import { BiconomySmartAccount, BiconomySmartAccountConfig, DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy-devx/account"
 import { Wallet, providers, ethers } from 'ethers'
 
 config()

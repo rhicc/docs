@@ -14,18 +14,18 @@ This section showcases two ways you can create Smart Accounts using Ethers JS. U
 You will need the following dependencies to create a Smart Account this way:
 
 ```bash
-yarn add @biconomy/account @biconomy/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy/paymaster ethers@5.7.2
+yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy-devx/paymaster ethers@5.7.2
 ```
 
 ### Imports
 
 ```typescript
-import { IPaymaster, BiconomyPaymaster } from "@biconomy/paymaster";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
 import {
@@ -38,7 +38,7 @@ import {
 
 ```typescript
 const provider = new providers.JsonRpcProvider(
-  "https://rpc.ankr.com/polygon_mumbai",
+  "https://rpc.ankr.com/polygon_mumbai"
 ); // or any other rpc provider link
 const signer = new Wallet("<your_private_key>" || "", provider);
 // we recommend using environment variables for your private keys!
@@ -93,18 +93,18 @@ createAccount();
 You will need the following dependencies to create a Smart Account this way:
 
 ```bash
-yarn add @biconomy/account @biconomy/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy/paymaster ethers@5.7.2
+yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy-devx/paymaster ethers@5.7.2
 ```
 
 ### Imports
 
 ```typescript
-import { IPaymaster, BiconomyPaymaster } from "@biconomy/paymaster";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
 ```

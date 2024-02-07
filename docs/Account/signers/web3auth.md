@@ -18,18 +18,18 @@ One way to utilize Social Logins is via Web3Auth. This section will give you cod
 You will need the following dependencies to create a Smart Account this way:
 
 ```bash
-yarn add @biconomy/account @biconomy/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy/paymaster @biconomy/web3-auth ethers@5.7.2
+yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy-devx/paymaster @biconomy/web3-auth ethers@5.7.2
 ```
 
 ## Imports
 
 ```typescript
-import { IPaymaster, BiconomyPaymaster } from "@biconomy/paymaster";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
 import SocialLogin from "@biconomy/web3-auth";
@@ -97,40 +97,39 @@ console.log("EOA address", accounts);
 ## Initialize Smart Account
 
 ```js
-import { IBundler, Bundler } from '@biconomy/bundler'
-import { BiconomySmartAccountV2, DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy/account"
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
-  IPaymaster,
-  BiconomyPaymaster,
-} from '@biconomy/paymaster'
-import { ECDSAOwnershipValidationModule, DEFAULT_ECDSA_OWNERSHIP_MODULE } from "@biconomy/modules";
+  BiconomySmartAccountV2,
+  DEFAULT_ENTRYPOINT_ADDRESS,
+} from "@biconomy-devx/account";
+import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
+import {
+  ECDSAOwnershipValidationModule,
+  DEFAULT_ECDSA_OWNERSHIP_MODULE,
+} from "@biconomy/modules";
 
 const bundler: IBundler = new Bundler({
-    // get from biconomy dashboard https://dashboard.biconomy.io/
-    bundlerUrl: '',
-    chainId: ChainId.POLYGON_MUMBAI,// or any supported chain of your choice
-    entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
-  })
-
+  // get from biconomy dashboard https://dashboard.biconomy.io/
+  bundlerUrl: "",
+  chainId: ChainId.POLYGON_MUMBAI, // or any supported chain of your choice
+  entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
+});
 
 const paymaster: IPaymaster = new BiconomyPaymaster({
   // get from biconomy dashboard https://dashboard.biconomy.io/
-  paymasterUrl: ''
-})
+  paymasterUrl: "",
+});
 
 const module = await ECDSAOwnershipValidationModule.create({
-    signer: wallet,
-    moduleAddress: DEFAULT_ECDSA_OWNERSHIP_MODULE
-  })
-
+  signer: wallet,
+  moduleAddress: DEFAULT_ECDSA_OWNERSHIP_MODULE,
+});
 
 let biconomySmartAccount = await BiconomySmartAccountV2.create({
-    chainId: ChainId.POLYGON_MUMBAI,
-    bundler: bundler,
-    entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
-    defaultValidationModule: module,
-    activeValidationModule: module
-})
-
-
+  chainId: ChainId.POLYGON_MUMBAI,
+  bundler: bundler,
+  entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
+  defaultValidationModule: module,
+  activeValidationModule: module,
+});
 ```

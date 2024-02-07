@@ -11,7 +11,7 @@ In your app's repository, install `@dynamic-labs/sdk-react-core`, `@dynamic-labs
 
 ```bash
 
-yarn add @dynamic-labs/sdk-react-core @biconomy/account @biconomy/bundler @biconomy/common @biconomy/core-types @biconomy/paymaster
+yarn add @dynamic-labs/sdk-react-core @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy-devx/paymaster
 
 ```
 
@@ -82,10 +82,10 @@ You will need to initialize instances of a Biconomy `bundler` and `paymaster` fo
 
 ```tsx
 
-import { IBundler, Bundler } from '@biconomy/bundler';
-import { IPaymaster, BiconomyPaymaster } from '@biconomy/paymaster';
+import { IBundler, Bundler } from '@biconomy-devx/bundler';
+import { IPaymaster, BiconomyPaymaster } from '@biconomy-devx/paymaster';
 import { ChainId } from "@biconomy/core-types";
-import { DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy/account";
+import { DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy-devx/account";
 
 ...
 
@@ -131,7 +131,7 @@ Lastly, using the user's paymaster, bundler, and validation module instances fro
 
 ```tsx
 
-import { BiconomySmartAccountV2, DEFAULT_ENTRYPOINT_ADDRESS  } from "@biconomy/account";
+import { BiconomySmartAccountV2, DEFAULT_ENTRYPOINT_ADDRESS  } from "@biconomy-devx/account";
 
 ...
 

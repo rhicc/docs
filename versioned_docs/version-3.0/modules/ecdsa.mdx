@@ -128,7 +128,7 @@ The `EcdsaOwnershipRegistryModule` interacts with Smart Accounts primarily throu
 - **User Operation Validation**: When a Smart Account attempts to perform an operation, `validateUserOp` is invoked to ensure the action is authorized by the registered owner.
 - **Signature Verification**: The module uses `_verifySignature` to verify any signatures associated with transactions initiated by the Smart Account.
 
-## SDK Guide 📘 
+## SDK Guide 📘
 
 Integrate the ECDSA Validation Module into Biconomy Smart Accounts using the SDK.
 
@@ -190,7 +190,7 @@ const ecdsaModule = await ECDSAOwnershipValidationModule.create({
 ### Creating a Smart Account 🚀
 
 ```javascript
-import { BiconomySmartAccountV2 } from "@biconomy/account";
+import { BiconomySmartAccountV2 } from "@biconomy-devx/account";
 
 const smartAccount = await BiconomySmartAccountV2.create({
   chainId: ChainId.BASE_GOERLI_TESTNET,

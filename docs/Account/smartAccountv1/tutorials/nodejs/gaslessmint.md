@@ -86,7 +86,7 @@ add it to our userOp.
 try {
   const paymasterAndDataResponse = await biconomyPaymaster.getPaymasterAndData(
     partialUserOp,
-    paymasterServiceData,
+    paymasterServiceData
   );
   partialUserOp.paymasterAndData = paymasterAndDataResponse.paymasterAndData;
 } catch (e) {
@@ -103,10 +103,10 @@ try {
   const userOpResponse = await smartAccount.sendUserOp(partialUserOp);
   const transactionDetails = await userOpResponse.wait();
   console.log(
-    `transactionDetails: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`,
+    `transactionDetails: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`
   );
   console.log(
-    `view minted nfts for smart account: https://testnets.opensea.io/${address}`,
+    `view minted nfts for smart account: https://testnets.opensea.io/${address}`
   );
 } catch (e) {
   console.log("error received ", e);
@@ -122,12 +122,12 @@ link to quickly view NFT's minted by our smart account.
 
 ```typescript
 import { config } from "dotenv";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
   BiconomySmartAccount,
   BiconomySmartAccountConfig,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
 import { ChainId } from "@biconomy/core-types";
 import {
@@ -136,7 +136,7 @@ import {
   IHybridPaymaster,
   PaymasterMode,
   SponsorUserOperationDto,
-} from "@biconomy/paymaster";
+} from "@biconomy-devx/paymaster";
 
 config();
 
@@ -153,7 +153,7 @@ const paymaster: IPaymaster = new BiconomyPaymaster({
 });
 
 const provider = new providers.JsonRpcProvider(
-  "https://rpc.ankr.com/polygon_mumbai",
+  "https://rpc.ankr.com/polygon_mumbai"
 );
 const wallet = new Wallet(process.env.PRIVATE_KEY || "", provider);
 
@@ -170,7 +170,7 @@ let address: string;
 async function createAccount() {
   console.log("creating address");
   let biconomySmartAccount = new BiconomySmartAccount(
-    biconomySmartAccountConfig,
+    biconomySmartAccountConfig
   );
   biconomySmartAccount = await biconomySmartAccount.init();
   address = await biconomySmartAccount.getSmartAccountAddress();
@@ -207,7 +207,7 @@ async function mintNFT() {
     const paymasterAndDataResponse =
       await biconomyPaymaster.getPaymasterAndData(
         partialUserOp,
-        paymasterServiceData,
+        paymasterServiceData
       );
     partialUserOp.paymasterAndData = paymasterAndDataResponse.paymasterAndData;
   } catch (e) {
@@ -218,10 +218,10 @@ async function mintNFT() {
     const userOpResponse = await smartAccount.sendUserOp(partialUserOp);
     const transactionDetails = await userOpResponse.wait();
     console.log(
-      `transactionDetails: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`,
+      `transactionDetails: https://mumbai.polygonscan.com/tx/${transactionDetails.receipt.transactionHash}`
     );
     console.log(
-      `view minted nfts for smart account: https://testnets.opensea.io/${address}`,
+      `view minted nfts for smart account: https://testnets.opensea.io/${address}`
     );
   } catch (e) {
     console.log("error received ", e);

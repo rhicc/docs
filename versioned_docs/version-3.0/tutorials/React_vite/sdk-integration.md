@@ -14,12 +14,12 @@ import "./App.css";
 import { useState, useEffect, useRef } from "react";
 import { ChainId } from "@biconomy/core-types";
 import { ethers } from "ethers";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
-import { IPaymaster, BiconomyPaymaster } from "@biconomy/paymaster";
+} from "@biconomy-devx/account";
+import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
@@ -44,7 +44,7 @@ Here is information about the rest of the imports:
   and handle sending them to an entry point contract to be executed as a
   transaction onchain.
 - `BiconomySmartAccount`,`BiconomySmartAccountConfig`,
-  `DEFAULT_ENTRYPOINT_ADDRESS` from `@biconomy/account` to handle the
+  `DEFAULT_ENTRYPOINT_ADDRESS` from `@biconomy-devx/account` to handle the
   configuration and methods of smart accounts
 - `IPaymaster` and `Paymaster` will be used to sponsor gas fees for an
   account, provided specific predefined conditions are satisfied.
@@ -55,15 +55,15 @@ Now, let's setup our paymaster and bundler :
 
 ```js
 const bundler: IBundler = new Bundler({
-    bundlerUrl:
-        "https://bundler.biconomy.io/api/v2/80001/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44",
-    chainId: ChainId.POLYGON_MUMBAI,
-    entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
+  bundlerUrl:
+    "https://bundler.biconomy.io/api/v2/80001/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44",
+  chainId: ChainId.POLYGON_MUMBAI,
+  entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
 });
 
 const paymaster: IPaymaster = new BiconomyPaymaster({
-    paymasterUrl:
-        "https://paymaster.biconomy.io/api/v1/80001/[YOUR_API_KEY_HERE]",
+  paymasterUrl:
+    "https://paymaster.biconomy.io/api/v1/80001/[YOUR_API_KEY_HERE]",
 });
 ```
 
@@ -91,7 +91,7 @@ const connect = async () => {
     await magic.wallet.connectWithUI();
     const web3Provider = new ethers.providers.Web3Provider(
       magic.rpcProvider,
-      "any",
+      "any"
     );
     setProvider(web3Provider);
     const module = await ECDSAOwnershipValidationModule.create({

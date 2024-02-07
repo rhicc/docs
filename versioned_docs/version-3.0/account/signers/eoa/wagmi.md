@@ -12,7 +12,7 @@ This section shows how to use Wagmi React Hooks to create a Smart Account with B
 You will need the following dependencies to create a Smart Account this way:
 
 ```bash
-yarn add wagmi viem @alchemy/aa-core @biconomy/account @biconomy/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy/paymaster
+yarn add wagmi viem @alchemy/aa-core @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy-devx/paymaster
 ```
 
 ## Set up Wagmi Config
@@ -33,23 +33,20 @@ import { createPublicClient, http } from "viem";
 ### Config Setup
 
 ```typescript
-
 const { chains, webSocketPublicClient } = configureChains(
   [baseGoerli],
-  [alchemyProvider({ apiKey: '' }), publicProvider()],
-)
+  [alchemyProvider({ apiKey: "" }), publicProvider()]
+);
 
 const config = createConfig({
   autoConnect: false,
   publicClient: createPublicClient({
     chain: baseGoerli,
-    transport: http()
+    transport: http(),
   }),
-  connectors: [
-    new MetaMaskConnector({ chains }),
-  ],
+  connectors: [new MetaMaskConnector({ chains })],
   webSocketPublicClient,
-})
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -58,9 +55,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </WagmiConfig>
     </>
-  )
+  );
 }
-
 ```
 
 With the config completed we can now access the Wagmi hooks in our other components.
@@ -73,14 +69,14 @@ import { WalletClientSigner } from "@alchemy/aa-core";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
-} from "@biconomy/account";
+} from "@biconomy-devx/account";
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
 } from "@biconomy/modules";
 import { ChainId } from "@biconomy/core-types";
-import { IPaymaster, BiconomyPaymaster } from "@biconomy/paymaster";
-import { IBundler, Bundler } from "@biconomy/bundler";
+import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
+import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import { useState } from "react";
 ```
 
@@ -148,36 +144,34 @@ See a basic implementation in the UI below:
 
 ```typescript
 return (
-    <>
-      <Head>
-        <title>Biconomy x WAGMI</title>
-        <meta name="description" content="WAGMI Hooks With Biconomy" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={styles.main}>
-        <h1>Biconomy x WAGMI Example</h1>
-        { address && <h2>EOA: {address}</h2>}
-        {smartAccountAddress && <h2>Smart Account: {smartAccountAddress}</h2>}
-        {connectors.map((connector) => (
-        <button
-          key={connector.id}
-          onClick={() => connect({ connector })}
-        >
+  <>
+    <Head>
+      <title>Biconomy x WAGMI</title>
+      <meta name="description" content="WAGMI Hooks With Biconomy" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <main className={styles.main}>
+      <h1>Biconomy x WAGMI Example</h1>
+      {address && <h2>EOA: {address}</h2>}
+      {smartAccountAddress && <h2>Smart Account: {smartAccountAddress}</h2>}
+      {connectors.map((connector) => (
+        <button key={connector.id} onClick={() => connect({ connector })}>
           {connector.name}
           {isLoading &&
             connector.id === pendingConnector?.id &&
-            ' (connecting)'}
+            " (connecting)"}
         </button>
       ))}
 
       {error && <div>{error.message}</div>}
       {isConnected && <button onClick={disconnect}>Disconnect</button>}
-      {isConnected && <button onClick={createSmartAccount}>Create Smart Account</button>}
-      </main>
-    </>
-  )
-
+      {isConnected && (
+        <button onClick={createSmartAccount}>Create Smart Account</button>
+      )}
+    </main>
+  </>
+);
 ```
 
 You are now ready to get started using WAGMI with Biconomy. For a full code implementation check out [this example repo](https://github.com/bcnmy/biconomy_wagmi_example).
