@@ -58,7 +58,7 @@ Thoroughly test your application with the new SDK version to ensure that all fun
 
 ## Additional recommendations
 
-- Use the [sendTransaction](/Account/methods#sendtransaction-) method directly instead of buildUserOp and sendUserOp.
+- Use the [sendTransaction](/stack/account/methods#sendtransaction-) method directly instead of buildUserOp and sendUserOp.
 - `PaymasterMode` to be imported from `@biconomy-devx/account`
 - DEFAULT_ECDSA_OWNERSHIP_MODULE, DEFAULT_SESSION_KEY_MANAGER_MODULE, DEFAULT_MULTICHAIN_MODULE, DEFAULT_BATCHED_SESSION_ROUTER_MODULE to be imported from `@biconomy-devx/account` package.
 - `Bundler` to be imported from `@biconomy-devx/account` instead of `@biconomy-devx/bundler` in order to keep using just one package.
