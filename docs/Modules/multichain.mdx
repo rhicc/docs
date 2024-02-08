@@ -132,7 +132,7 @@ pnpm add @biconomy-devx/modules ethers
 ```javascript
 import { ethers } from "ethers";
 
-const provider = new ethers.JsonRpcProvider("[RPC_Endpoint]")();
+const provider = new new ethers.JsonRpcProvider("[RPC_Endpoint]")();
 const signer = new ethers.Wallet("[Private_Key]", provider);
 ```
 
@@ -157,7 +157,7 @@ Check [Paymaster integration](/Paymaster/integration) and [Bundler integration](
 Here is how you can set up Smart Account instances accross multiple chains:
 
 ```ts
-import { createSmartAccountClient, PaymasterMode } from "@biconomy-devx/account";
+import { createSmartAccountClient, PaymasterMode } from "@biconomy/account";
 
 let baseAccount = await createSmartAccountClient({
   biconomyPaymasterApiKey: "https://docs.biconomy.io/dashboard/paymaster"
