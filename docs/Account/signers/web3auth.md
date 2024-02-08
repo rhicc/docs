@@ -7,7 +7,7 @@ sidebar_position: 8
 
 :::caution
 
-The package @biconomy/web3-auth has been deprecated. It is highly recommended that if you integrate web3auth you should use their packages directly.
+The package @biconomy-devx/web3-auth has been deprecated. It is highly recommended that if you integrate web3auth you should use their packages directly.
 
 :::
 
@@ -18,7 +18,7 @@ One way to utilize Social Logins is via Web3Auth. This section will give you cod
 You will need the following dependencies to create a Smart Account this way:
 
 ```bash
-yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy-devx/paymaster @biconomy/web3-auth ethers@5.7.2
+yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy-devx/common @biconomy-devx/core-types @biconomy-devx/modules @biconomy-devx/paymaster @biconomy-devx/web3-auth ethers@5.7.2
 ```
 
 ## Imports
@@ -26,8 +26,8 @@ yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconom
 ```typescript
 import { createSmartAccountClient, LightSigner } from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
-import SocialLogin from "@biconomy/web3-auth";
-import "@biconomy/web3-auth/dist/src/style.css";
+import SocialLogin from "@biconomy-devx/web3-auth";
+import "@biconomy-devx/web3-auth/dist/src/style.css";
 ```
 
 :::info
@@ -95,7 +95,8 @@ import { createSmartAccountClient, LightSigner } from "@biconomy-devx/account";
 
 const smartAccount = await createSmartAccountClient({
   signer: wallet as LightSigner,
-  bundlerUrl: "", // bundler URL can be obtained from the dashboard
-  biconomyPaymasterApiKey: "", // Biconomy Paymaster API Key can also be obtained from dashboard
+  bundlerUrl:
+    "https://bundler.biconomy.io/api/v2/{chain-id-here}/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44",
+  biconomyPaymasterApiKey: "https://docs.biconomy.io/dashboard/paymaster", // <-- Read about this here
 });
 ```

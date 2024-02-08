@@ -56,7 +56,7 @@ The `IBiconomySmartAccount` interface extends the `ISmartAccount` interface and 
 The `ISmartAccount` interface provides essential methods for interacting with a Biconomy Smart Account.
 
 ```typescript
-import { UserOperation } from "@biconomy/core-types";
+import { UserOperation } from "@biconomy-devx/core-types";
 import { UserOpResponse } from "@biconomy-devx/bundler";
 export interface ISmartAccount {
   getSmartAccountAddress(accountIndex: number): Promise<string>;

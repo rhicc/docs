@@ -27,7 +27,7 @@ import { ethers } from "ethers";
 import {
   SessionKeyManagerModule,
   DEFAULT_SESSION_KEY_MANAGER_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 import { BiconomySmartAccountV2 } from "@biconomy-devx/account";
 import { defaultAbiCoder } from "ethers/lib/utils";
 import { toast, ToastContainer } from "react-toastify";

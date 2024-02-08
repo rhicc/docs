@@ -18,7 +18,7 @@ Check out an end-to-end integration of Turnkey with Biconomy in this [repo](http
 You will need the following dependencies to create a Smart Account this way:
 
 ```bash
-yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy-devx/paymaster @turnkey/ethers @turnkey/http @turnkey/api-key-stamper ethers@5.7.2
+yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy-devx/common @biconomy-devx/core-types @biconomy-devx/modules @biconomy-devx/paymaster @turnkey/ethers @turnkey/http @turnkey/api-key-stamper ethers@5.7.2
 ```
 
 ## Imports
@@ -31,7 +31,7 @@ import {
   DEFAULT_ENTRYPOINT_ADDRESS,
 } from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import { TurnkeySigner } from "@turnkey/ethers";
 import { TurnkeyClient } from "@turnkey/http";
 import { ApiKeyStamper } from "@turnkey/api-key-stamper";

@@ -19,7 +19,7 @@ Let’s import our bundler package, and providers from the ethers package:
 import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import { DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy-devx/account";
 import { providers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 ```
 
 IBundler is the typing for the Bundler class that we will create a new instance of.
@@ -91,7 +91,7 @@ Next step is to specify that we want the ECDSA module for our smart account. Upd
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 ```
 
 Now lets initialize the module and use the `create` method on the `BiconomySmartAccountV2` class to generate a new instance of our smart account. Additional information about this method can be found [here](https://docs.biconomy.io/Account/methods#create).

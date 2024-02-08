@@ -57,8 +57,8 @@ const smartWallet = await createSmartAccountClient({
   bundlerUrl: config.bundlerUrl,
 });
 
-const scwAddress = await smartWallet.getAccountAddress();
-console.log("SCW Address", scwAddress);
+const saAddress = await smartWallet.getAccountAddress();
+console.log("SA Address", saAddress);
 ```
 
 </TabItem>
@@ -77,7 +77,7 @@ const config = {
 };
 
 // Generate EOA from private key using ethers.js
-let provider = new ethers.providers.JsonRpcProvider(config.rpcUrl);
+let provider = new new ethers.JsonRpcProvider(config.rpcUrl)();
 let signer = new ethers.Wallet(config.privateKey, provider);
 
 // Create Biconomy Smart Account instance
@@ -87,8 +87,8 @@ const smartWallet = await createSmartAccountClient({
   bundlerUrl: config.bundlerUrl,
 });
 
-const scwAddress = await smartWallet.getAccountAddress();
-console.log("SCW Address", scwAddress);
+const saAddress = await smartWallet.getAccountAddress();
+console.log("SA Address", saAddress);
 ```
 
 </TabItem>

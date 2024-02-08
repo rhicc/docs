@@ -12,7 +12,7 @@ This section shows how to use Viem to create a Smart Account with Biconomy. If y
 You will need the following dependencies to create a Smart Account this way:
 
 ```bash
-yarn add viem @alchemy/aa-core @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/modules @biconomy-devx/paymaster
+yarn add viem @alchemy/aa-core @biconomy-devx/account @biconomy-devx/bundler @biconomy-devx/common @biconomy-devx/modules @biconomy-devx/paymaster
 ```
 
 ## Imports
@@ -36,8 +36,8 @@ import {
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
-} from "@biconomy/modules";
-import { ChainId } from "@biconomy/core-types";
+} from "@biconomy-devx/modules";
+import { ChainId } from "@biconomy-devx/core-types";
 import {
   IPaymaster,
   BiconomyPaymaster,

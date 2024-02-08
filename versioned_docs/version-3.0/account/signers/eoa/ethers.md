@@ -14,7 +14,7 @@ This section showcases two ways you can create Smart Accounts using Ethers JS. U
 You will need the following dependencies to create a Smart Account this way:
 
 ```bash
-yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy-devx/paymaster ethers@5.7.2
+yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy-devx/common @biconomy-devx/core-types @biconomy-devx/modules @biconomy-devx/paymaster ethers@5.7.2
 ```
 
 ### Imports
@@ -27,11 +27,11 @@ import {
   DEFAULT_ENTRYPOINT_ADDRESS,
 } from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 ```
 
 ### Create a Signer using a Private Key:
@@ -93,7 +93,7 @@ createAccount();
 You will need the following dependencies to create a Smart Account this way:
 
 ```bash
-yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy/modules @biconomy-devx/paymaster ethers@5.7.2
+yarn add @biconomy-devx/account @biconomy-devx/bundler @biconomy-devx/common @biconomy-devx/core-types @biconomy-devx/modules @biconomy-devx/paymaster ethers@5.7.2
 ```
 
 ### Imports
@@ -106,7 +106,7 @@ import {
   DEFAULT_ENTRYPOINT_ADDRESS,
 } from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 ```
 
 ### Configuration Values

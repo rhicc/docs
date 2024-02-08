@@ -12,7 +12,7 @@ following:
 ```js
 import "./App.css";
 import { useState, useEffect, useRef } from "react";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import { ethers } from "ethers";
 import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
@@ -23,7 +23,7 @@ import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 import Counter from "./Components/Counter";
 import { Magic } from "magic-sdk";
 ```
@@ -37,7 +37,7 @@ Here is information about the rest of the imports:
   and lifecycle.
 - `Magic` from `magic-sdk`: A class from Magic SDK that
   allows you to leverage Magic for social logins.
-- ChainId from `@biconomy/core-types`: An enumeration of supported blockchain
+- ChainId from `@biconomy-devx/core-types`: An enumeration of supported blockchain
   networks.
 - `ethers`: A library for interacting with Ethereum.
 - `Ibundler`and `bundler` will take UserOperations included in a mempool and

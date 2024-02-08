@@ -104,7 +104,7 @@ Start by importing necessary packages for the bundler:
 import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import { DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy-devx/account";
 import { ethers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 ```
 
 IBundler is the typing for the Bundler class that we will create a new instance of.
@@ -151,7 +151,7 @@ We start by importing the ECDSA module:
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 ```
 
 Now let's initialize the module and pass it to our Account Creation Config:
@@ -204,7 +204,7 @@ Once you have tokens available, it is time to start constructing our first userO
 
 Let's create your first **user operation (userOp)** for the transaction. Here are the details it needs:
 
-- `to`: The address towards which this interaction is directed. (Feel free to change to your own or send me more test tokens 😉)
+- `to`: Smart Contract your Smart Account will interact with. (Feel free to change to your own or send me more test tokens 😉)
 - `data`: We are defaulting to `0x` as no specific data is needed for native transfers.
 - `value`: We need to indicate the amount we want to transfer and format it correctly using the `parseEther` utility function.
 
@@ -285,11 +285,11 @@ import {
   DEFAULT_ENTRYPOINT_ADDRESS,
 } from "@biconomy-devx/account";
 import { ethers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 config();
 
 const bundler: IBundler = new Bundler({

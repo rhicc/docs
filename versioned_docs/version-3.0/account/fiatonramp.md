@@ -12,10 +12,10 @@ It is a typescript wrapper on `transak.js` SDK which abstracts a few steps for t
 
 ## Steps to Enable Fiat On-Ramp
 
-- Import the `@biconomy/transak` package into your project.
+- Import the `@biconomy-devx/transak` package into your project.
 
 ```js
-import Transak from "@biconomy/transak";
+import Transak from "@biconomy-devx/transak";
 ```
 
 - Initialize the project without going to any dashboard
@@ -29,7 +29,7 @@ transak.init();
 - If you are using Fiat On Ramp then you can directly pass in the email like so:
 
 ```js
-import Transak from "@biconomy/transak";
+import Transak from "@biconomy-devx/transak";
 
 // use this info for transak package
 const transak = new Transak("STAGING", {

@@ -27,11 +27,11 @@ import {
   DEFAULT_ENTRYPOINT_ADDRESS,
 } from "@biconomy-devx/account";
 import { Bundler } from "@biconomy-devx/bundler";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import {
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
   ECDSAOwnershipValidationModule,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 import { BiconomyPaymaster, PaymasterMode } from "@biconomy-devx/paymaster";
 import { DfnsWallet } from "@dfns/lib-ethersjs5";
 import { DfnsApiClient } from "@dfns/sdk";

@@ -15,7 +15,7 @@ import {
   SessionLeafNode,
   SessionSearchParam,
   SessionStatus,
-} from "@biconomy/modules/dist/src/interfaces/ISessionStorage";
+} from "@biconomy-devx/modules/dist/src/interfaces/ISessionStorage";
 ```
 
 We will need to implement all the interface methods.
@@ -30,7 +30,7 @@ import {
   SessionLeafNode,
   SessionSearchParam,
   SessionStatus,
-} from "@biconomy/modules/dist/src/interfaces/ISessionStorage";
+} from "@biconomy-devx/modules/dist/src/interfaces/ISessionStorage";
 
 export class SessionFileStorage implements ISessionStorage {
   private smartAccountAddress: string;
@@ -63,7 +63,7 @@ export class SessionFileStorage implements ISessionStorage {
 
   private async writeDataToFile(
     data: any,
-    type: "sessions" | "signers",
+    type: "sessions" | "signers"
   ): Promise<void> {
     return new Promise((resolve, reject) => {
       const filePath = this.getStorageFilePath(type);
@@ -89,7 +89,7 @@ export class SessionFileStorage implements ISessionStorage {
       return;
     } else {
       throw new Error(
-        "Either pass sessionId or a combination of sessionPublicKey and sessionValidationModule address.",
+        "Either pass sessionId or a combination of sessionPublicKey and sessionValidationModule address."
       );
     }
   }
@@ -137,7 +137,7 @@ export class SessionFileStorage implements ISessionStorage {
     console.log("Add session Data", leaf);
     const data = await this.getSessionStore();
     leaf.sessionValidationModule = this.toLowercaseAddress(
-      leaf.sessionValidationModule,
+      leaf.sessionValidationModule
     );
     leaf.sessionPublicKey = this.toLowercaseAddress(leaf.sessionPublicKey);
     data.leafNodes.push(leaf);
@@ -146,7 +146,7 @@ export class SessionFileStorage implements ISessionStorage {
 
   async updateSessionStatus(
     param: SessionSearchParam,
-    status: SessionStatus,
+    status: SessionStatus
   ): Promise<void> {
     this.validateSearchParam(param);
 
@@ -177,7 +177,7 @@ export class SessionFileStorage implements ISessionStorage {
   async clearPendingSessions(): Promise<void> {
     const data = await this.getSessionStore();
     data.leafNodes = data.leafNodes.filter(
-      (s: SessionLeafNode) => s.status !== "PENDING",
+      (s: SessionLeafNode) => s.status !== "PENDING"
     );
     await this.writeDataToFile(data, "sessions"); // Use 'sessions' as the type
   }
@@ -213,7 +213,7 @@ export class SessionFileStorage implements ISessionStorage {
   }
 
   async getAllSessionData(
-    param?: SessionSearchParam,
+    param?: SessionSearchParam
   ): Promise<SessionLeafNode[]> {
     const sessions = (await this.getSessionStore()).leafNodes;
     if (!param || !param.status) {

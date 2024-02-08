@@ -28,7 +28,7 @@ import {
   BiconomySmartAccountV2,
 } from "@biconomy-devx/account"; // Default entry point and smart account module from Biconomy
 import { Wallet, ethers, providers } from "ethers"; // ethers for interacting with the Ethereum blockchain
-import { ChainId } from "@biconomy/core-types"; // Chain IDs for different blockchains supported by Biconomy
+import { ChainId } from "@biconomy-devx/core-types"; // Chain IDs for different blockchains supported by Biconomy
 import {
   IPaymaster,
   BiconomyPaymaster,
@@ -37,7 +37,7 @@ import {
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
-} from "@biconomy/modules"; // Modules for ownership validation
+} from "@biconomy-devx/modules"; // Modules for ownership validation
 
 config(); // Load environment variables from .env file
 ```
@@ -212,7 +212,7 @@ import {
   BiconomySmartAccountV2,
 } from "@biconomy-devx/account"; // Default entry point and smart account module from Biconomy
 import { Wallet, ethers, providers } from "ethers"; // ethers for interacting with the Ethereum blockchain
-import { ChainId } from "@biconomy/core-types"; // Chain IDs for different blockchains supported by Biconomy
+import { ChainId } from "@biconomy-devx/core-types"; // Chain IDs for different blockchains supported by Biconomy
 import {
   IPaymaster,
   BiconomyPaymaster,
@@ -221,7 +221,7 @@ import {
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
-} from "@biconomy/modules"; // Modules for ownership validation
+} from "@biconomy-devx/modules"; // Modules for ownership validation
 
 config(); // Load environment variables from .env file
 

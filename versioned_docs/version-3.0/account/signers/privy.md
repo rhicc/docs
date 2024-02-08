@@ -17,11 +17,11 @@ Read below to learn how to configure your app to create smart accounts for all y
 
 ## 1. Install Privy and Biconomy
 
-In your app's repository, install the `@privy-io/react-auth` SDK from Privy and the `@biconomy/{account, bundler, common, core-types, paymaster}` SDKs from Biconomy:
+In your app's repository, install the `@privy-io/react-auth` SDK from Privy and the `@biconomy-devx/{account, bundler, common, core-types, paymaster}` SDKs from Biconomy:
 
 ```bash
 
-yarn add @privy-io/react-auth @biconomy-devx/account @biconomy-devx/bundler @biconomy/common @biconomy/core-types @biconomy-devx/paymaster
+yarn add @privy-io/react-auth @biconomy-devx/account @biconomy-devx/bundler @biconomy-devx/common @biconomy-devx/core-types @biconomy-devx/paymaster
 
 ```
 
@@ -92,7 +92,7 @@ Next, initialize instances of a Biconomy `bundler` and `paymaster` for the user,
 
 import { IBundler, Bundler } from '@biconomy-devx/bundler';
 import { IPaymaster, BiconomyPaymaster } from '@biconomy-devx/paymaster';
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 
 ...
 
@@ -113,7 +113,7 @@ const paymaster: IPaymaster = new BiconomyPaymaster({
 Then, initialize a validation module for the user's smart account, by passing an ethers signer from the user's embedded wallet to Biconomy's `ECDSAOwnershipValidationModule`. This allows the user to authorize actions from their Biconomy smart account by signing messages with their Privy embedded wallet.
 
 ```tsx
-import { ECDSAOwnershipValidationModule, DEFAULT_ECDSA_OWNERSHIP_MODULE } from "@biconomy/modules";
+import { ECDSAOwnershipValidationModule, DEFAULT_ECDSA_OWNERSHIP_MODULE } from "@biconomy-devx/modules";
 
 ...
 
@@ -155,8 +155,8 @@ const smartAccount = await BiconomySmartAccountV2.create({
 import { useWallets } from '@privy-io/react-auth';
 import { IBundler, Bundler } from '@biconomy-devx/bundler';
 import { IPaymaster, BiconomyPaymaster } from '@biconomy-devx/paymaster';
-import { ChainId } from "@biconomy/core-types";
-import { ECDSAOwnershipValidationModule, DEFAULT_ECDSA_OWNERSHIP_MODULE } from "@biconomy/modules";
+import { ChainId } from "@biconomy-devx/core-types";
+import { ECDSAOwnershipValidationModule, DEFAULT_ECDSA_OWNERSHIP_MODULE } from "@biconomy-devx/modules";
 import { BiconomySmartAccountV2, DEFAULT_ENTRYPOINT_ADDRESS  } from "@biconomy-devx/account";
 
 ...

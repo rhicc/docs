@@ -312,7 +312,10 @@ Now you're all set, you created a Next JS application that leverages Account Abs
 
 ```typescript
 import Head from "next/head";
-import { ParticleAuthModule, ParticleProvider } from "@biconomy/particle-auth";
+import {
+  ParticleAuthModule,
+  ParticleProvider,
+} from "@biconomy-devx/particle-auth";
 import styles from "@/styles/Home.module.css";
 import { useState } from "react";
 import { IBundler, Bundler } from "@biconomy-devx/bundler";
@@ -323,9 +326,9 @@ import {
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 import { ethers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
 import Minter from "@/components/Minter";
 

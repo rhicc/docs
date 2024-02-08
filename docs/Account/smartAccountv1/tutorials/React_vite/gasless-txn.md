@@ -45,8 +45,8 @@ If you followed all instructions from the last step to now your file should look
 import "./App.css";
 import "@Biconomy/web3-auth/dist/src/style.css";
 import { useState, useEffect, useRef } from "react";
-import SocialLogin from "@biconomy/web3-auth";
-import { ChainId } from "@biconomy/core-types";
+import SocialLogin from "@biconomy-devx/web3-auth";
+import { ChainId } from "@biconomy-devx/core-types";
 import { ethers } from "ethers";
 import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {

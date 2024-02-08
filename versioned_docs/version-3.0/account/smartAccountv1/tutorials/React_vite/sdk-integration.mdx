@@ -13,8 +13,8 @@ following:
 import "./App.css";
 import "@Biconomy/web3-auth/dist/src/style.css";
 import { useState, useEffect, useRef } from "react";
-import SocialLogin from "@biconomy/web3-auth";
-import { ChainId } from "@biconomy/core-types";
+import SocialLogin from "@biconomy-devx/web3-auth";
+import { ChainId } from "@biconomy-devx/core-types";
 import { ethers } from "ethers";
 import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
@@ -33,9 +33,9 @@ Here is information about the rest of the imports:
 
 - `useState`, `useEffect`, `useRef`: React hooks for managing component state
   and lifecycle.
-- `SocialLogin` from `@biconomy/web3-auth`: A class from Biconomy SDK that
+- `SocialLogin` from `@biconomy-devx/web3-auth`: A class from Biconomy SDK that
   allows you to leverage Web3Auth for social logins.
-- ChainId from `@biconomy/core-types`: An enumeration of supported blockchain
+- ChainId from `@biconomy-devx/core-types`: An enumeration of supported blockchain
   networks.
 - `ethers`: A library for interacting with Ethereum.
 - `Ibundler`and `bundler` will take UserOperations included in a mempool and

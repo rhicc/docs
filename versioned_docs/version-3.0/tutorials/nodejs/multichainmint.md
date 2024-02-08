@@ -22,7 +22,7 @@ Begin by importing the necessary modules for blockchain interaction and configur
 ```typescript
 import { config } from "dotenv";
 import { IBundler, Bundler } from "@biconomy-devx/bundler";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
@@ -30,7 +30,7 @@ import {
 import {
   MultiChainValidationModule,
   DEFAULT_MULTICHAIN_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 import { ethers } from "ethers";
 import {
   IPaymaster,
@@ -316,7 +316,7 @@ Through this setup, you've unlocked the potential to mint NFTs across multiple b
 ```typescript
 import { config } from "dotenv";
 import { IBundler, Bundler } from "@biconomy-devx/bundler";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import {
   BiconomySmartAccountV2,
   DEFAULT_ENTRYPOINT_ADDRESS,
@@ -324,7 +324,7 @@ import {
 import {
   MultiChainValidationModule,
   DEFAULT_MULTICHAIN_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 import { ethers } from "ethers";
 import {
   IPaymaster,

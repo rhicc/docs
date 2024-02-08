@@ -31,7 +31,7 @@ import {
   DEFAULT_ENTRYPOINT_ADDRESS,
 } from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import {
   IPaymaster,
   BiconomyPaymaster,
@@ -278,7 +278,7 @@ import {
   DEFAULT_ENTRYPOINT_ADDRESS,
 } from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import {
   IPaymaster,
   BiconomyPaymaster,

@@ -128,7 +128,7 @@ import {
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
   SessionKeyManagerModule,
   DEFAULT_SESSION_KEY_MANAGER_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 import { config } from "dotenv";
 import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import {
@@ -136,7 +136,7 @@ import {
   DEFAULT_ENTRYPOINT_ADDRESS,
 } from "@biconomy-devx/account";
 import { Wallet, providers, ethers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import {
   IPaymaster,
   BiconomyPaymaster,

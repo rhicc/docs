@@ -40,11 +40,11 @@ Install the following dependencies:
 yarn add
     @biconomy-devx/account
     @biconomy-devx/bundler
-    @biconomy/common
-    @biconomy/core-types
+    @biconomy-devx/common
+    @biconomy-devx/core-types
     @biconomy-devx/paymaster
-    @biconomy/web3-auth
-    @biconomy/node-client -S
+    @biconomy-devx/web3-auth
+    @biconomy-devx/node-client -S
 ```
 
 We will use these tools to build out our front end. In addition, lets also

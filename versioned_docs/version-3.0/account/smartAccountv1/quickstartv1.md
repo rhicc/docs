@@ -77,7 +77,7 @@ Let’s import our bundler package, and providers from the ethers package:
 import { IBundler, Bundler } from "@biconomy-devx/bundler";
 import { DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy-devx/account";
 import { providers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 ```
 
 IBundler is the typing for the Bundler class that we will create a new instance of.
@@ -206,7 +206,7 @@ Check out the long transaction details available now in your console! You just c
 ```typescript
 import { config } from "dotenv"
 import { IBundler, Bundler } from '@biconomy-devx/bundler'
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import { BiconomySmartAccount, BiconomySmartAccountConfig, DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy-devx/account"
 import { Wallet, providers, ethers } from 'ethers'
 

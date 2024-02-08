@@ -33,7 +33,10 @@ Now we're going to leverage Particle Auth through the SDK to set up social login
 Let's import the Particle Auth Package
 
 ```typescript
-import { ParticleAuthModule, ParticleProvider } from "@biconomy/particle-auth";
+import {
+  ParticleAuthModule,
+  ParticleProvider,
+} from "@biconomy-devx/particle-auth";
 ```
 
 In your React component define an instance of the Particle Auth Module. The module will require api keys which you can get from the [Particle Dashboard](https://docs.particle.network/getting-started/dashboard).
@@ -98,12 +101,12 @@ import {
   DEFAULT_ENTRYPOINT_ADDRESS,
 } from "@biconomy-devx/account";
 import { ethers } from "ethers";
-import { ChainId } from "@biconomy/core-types";
+import { ChainId } from "@biconomy-devx/core-types";
 import { IPaymaster, BiconomyPaymaster } from "@biconomy-devx/paymaster";
 import {
   ECDSAOwnershipValidationModule,
   DEFAULT_ECDSA_OWNERSHIP_MODULE,
-} from "@biconomy/modules";
+} from "@biconomy-devx/modules";
 ```
 
 Now in the React component we're going to define the instance of our Bundler and Paymaster:
