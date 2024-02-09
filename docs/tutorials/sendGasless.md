@@ -39,8 +39,7 @@ import {
 const config = {
   privateKey: "your-private-key",
   biconomyPaymasterApiKey: "your-biconomy-api-key",
-  bundlerUrl:
-    "https://bundler.biconomy.io/api/v2/{chain-id-here}/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44",
+  bundlerUrl: "", // <-- Read about this at https://docs.biconomy.io/dashboard#bundler-url
 };
 
 // Generate EOA from private key using ethers.js
@@ -73,8 +72,7 @@ import { createSmartAccountClient } from "@biconomy-devx/account";
 const config = {
   privateKey: "your-private-key",
   biconomyPaymasterApiKey: "your-biconomy-api-key",
-  bundlerUrl:
-    "https://bundler.biconomy.io/api/v2/{chain-id-here}/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44",
+  bundlerUrl: "", // <-- Read about this at https://docs.biconomy.io/dashboard#bundler-url
   rpcUrl: "rpc-url",
 };
 
@@ -127,7 +125,3 @@ console.log("Transaction Hash", transactionHash);
 Send the transaction using the Biconomy Smart Account and get the transaction hash. The transaction will be built into a User Operation and then send to the Bundler.
 
 That's it! You've successfully sent a simple transaction using ethers.js/viem and the Biconomy Smart Account. Feel free to customize this example based on your specific use case.
-
-```
-
-```
